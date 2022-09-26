@@ -10,6 +10,11 @@ Page({
     }, 
     // 事件处理函数 
     bindViewTap() { 
+      wx.navigateTo({  
+        url: '../logs/logs'  
+      })  
+    },  
+    bindViewTapButton() {  
       this.setData({ 
         motto : 'why u bully me' 
       }) 
