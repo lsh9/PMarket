@@ -15,14 +15,14 @@
         {
             "pagePath": "pages/homepage/homepage",
             "text": "首页",
-            "iconPath": "",
-            "selectedIconPath": ""
+            "iconPath": "./tabbar1.png",
+            "selectedIconPath": "./tabbar1.png"
         },
         {
             "pagePath": "pages/usercenter/index",
             "text": "我的",
-            "iconPath": "",
-            "selectedIconPath": ""
+            "iconPath": "./tabbar2.png",
+            "selectedIconPath": "./tabbar2.png"
         }
     ]
 },

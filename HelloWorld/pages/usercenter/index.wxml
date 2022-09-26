@@ -21,7 +21,7 @@
     <text class="user-motto">{{motto}}</text> 
   </view> 
  
-  <button type="primary" bindtap="bindViewTap">why u bully me 
+  <button type="primary" bindtap="bindViewTapButton">why u bully me 
  
  
  
