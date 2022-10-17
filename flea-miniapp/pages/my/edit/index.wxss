@@ -1,0 +1,12 @@
+/* pages/address/address-add/index.wxss */
+.userinfo{
+  background: #fff;
+  text-align: center;
+  padding: 20rpx;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}

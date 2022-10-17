@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+        <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  </view>
+
+  <view class="swiper-container">
+    <swiper indicator-dots class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{bannerList}}" wx:key="index">
+        <swiper-item>
+          <image bindtap="tapBanner" data-id="{{item.link}}" src="{{item.picUrl}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="category-container" hidden="true">
+    <view class="weui-grids">
+      <block wx:for="{{categoryList}}" wx:key="index">
+        <navigator url="../goods/goods-list/index?categoryId={{item.id}}" class="weui-grid category">
+          <image class="weui-grid__icon" src="{{item.picUrl}}" />
+          <view class="weui-grid__label label">{{item.categoryName}}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+
+  <view class="goods-container">
+    <view class="weui-flex types" hidden="true">
+      <view class="type {{type == 1 ? 'active': ''}}" bindtap="tabType" data-type="1">出售</view>
+      <view class="type {{type == 2 ? 'active': ''}}" bindtap="tabType" data-type="2">求购</view>
+    </view>
+    <view class="title">最近发布</view>
+    <view class="weui-grids">
+      <block wx:for="{{goodsList}}" wx:key="index">
+        <navigator url="../goods/goods-detail/index?goodsId={{item.id}}" class="weui-grid goods">
+          <image class="weui-grid__icon goods" src="{{item.picUrl}}" />
+          <view class="weui-grid__label goods goods-name">{{item.goodsName}}</view>
+          <view class="weui-grid__label goods price">¥ {{item.price}}</view>
+          <view class="weui-flex" style="align-items: center; padding: 6rpx">
+            <image class="avatar" src="{{item.member.avatarUrl}}"></image>
+            <label class="nickname">{{item.member.nickname}}</label>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>
