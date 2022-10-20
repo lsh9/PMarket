@@ -1,10 +1,13 @@
 from flask import Blueprint
+from app.models import User
+from app.models import db
 
 my_bp = Blueprint("my_bp", __name__)
 
 
 @my_bp.route('/my')
 def my():  # put application's code here
+
 	return 'my'
 
 
