@@ -1,0 +1,3 @@
+# cp app/config.py instance/
+# modify config.py in instance/ can rewrite configs in app/config.py
+config.py

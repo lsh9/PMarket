@@ -7,5 +7,5 @@ if __name__ == '__main__':
 		# 如果没有，则根据模型转换的建表语句进行建表。
 		# 如果找到，则不会进行额外处理
 		db.create_all()
-	app.run(port=8080, debug=True)
+	app.run(host=app.config['APP_HOST'], port=app.config['APP_PORT'])
 	
