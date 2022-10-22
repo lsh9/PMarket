@@ -1,6 +1,8 @@
-from flask import Blueprint
-from app.models import User
-from app.models import db
+import time
+
+from flask import Blueprint, request, current_app
+import requests
+from app.models import db, User
 
 my_bp = Blueprint("my_bp", __name__)
 
@@ -16,9 +18,24 @@ def my_register():  # put application's code here
 	return 'register'
 
 
-@my_bp.route('/my/login')
-def my_login():  # put application's code here
-	return 'login'
+@my_bp.route('/my/login', methods=["POST", "GET"])
+def my_login():
+	if request.method == "POST":
+		data = request.json
+		js_code = data['code']
+		response = requests.get(f"https://api.weixin.qq.com/sns/jscode2session?appid={current_app.config['WX_APP_ID']}&secret={current_app.config['WX_APP_SECRET']}&js_code={js_code}&grant_type=authorization_code")
+		wx_data = response.json()
+		if 'openid' in wx_data:
+			openid = wx_data['openid']
+		else:
+			openid = "error" + time.time().__str__()
+		nickName = data['nickName']
+		avatarUrl = data['avatarUrl']
+		gender = data['gender']
+		db.session.add(User(openid, nickName, avatarUrl, gender))
+		return {'code': 0}
+	else:
+		return {'code': 1}
 
 
 @my_bp.route('/my/edit')
