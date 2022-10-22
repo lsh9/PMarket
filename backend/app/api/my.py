@@ -32,7 +32,7 @@ def my_login():
 		nickName = data['nickName']
 		avatarUrl = data['avatarUrl']
 		gender = data['gender']
-		db.session.add(User(openid, nickName, avatarUrl, gender))
+		db.session.add(User(openid=openid, nickName=nickName, avatarUrl=avatarUrl, gender=gender))
 		return {'code': 0}
 	else:
 		return {'code': 1}
