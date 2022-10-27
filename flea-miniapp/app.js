@@ -1,34 +1,34 @@
 //app.js
 App({
   onLaunch: function () {
-   
+
   },
   
-  //授权登录
+  //微信授权登录
   login: function (userInfo, callback) {
     var that = this;
     wx.login({
       success: function (res) {
-        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
-        // 下面开始调用注册接口
+        var code = res.code; // 微信登录接口返回的 code 参数
+        var openid;
         wx.request({
-          url: that.globalData.domain + '/api/wechat/login',
+          url: that.globalData.domain + '/my/login',
+          method:"POST",
           data: {
             code: code,
             avatarUrl: userInfo.avatarUrl,
-            nickname: userInfo.nickName,
+            nickName: userInfo.nickName,
             gender: userInfo.gender
           }, // 设置请求的 参数
           success: (res) => {
-            if (res.data.code == 0) {
+            console.log(res.data);
+            console.log(userInfo);
+            if (res.data.code==0) {
               wx.hideLoading();
-              var token = res.data.token;
-              that.globalData.userInfo = res.data.member;
-              wx.setStorage({
-                key: 'token',
-                data: token,
-              })
+              that.globalData.userInfo = userInfo;
+              console.log(that.globalData.userInfo);
               callback(0);
+              console.log(callback);
             } else {
               // 登录错误 
               wx.hideLoading();
@@ -47,6 +47,7 @@ App({
 
   globalData: {
     userInfo: null,
-    domain: "http://1.117.242.95:5000"
+   // domain: "http://1.117.242.95:80" 
+    domain: "http://47.93.251.137:80"
   }
 })
