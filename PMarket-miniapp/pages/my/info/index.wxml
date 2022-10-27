@@ -1,9 +1,9 @@
-<!--pages/member-info/index.wxml-->
+<!--pages/my/info/index.wxml-->
 <view class='container'>
   <view class="userinfo">
-    <image src='{{ memberInfo.avatarUrl }}' class='userinfo-avatar'>
+    <image src='{{ userInfo.avatarUrl }}' class='userinfo-avatar'>
     </image>
-    <view class="userinfo-nickname">{{ memberInfo.nickname }}</view>
+    <view class="userinfo-nickname">{{ userInfo.nickname }}</view>
   </view>
 
   <view class='basic'>
@@ -14,15 +14,15 @@
 
     <view class='weui-flex item'>
       <view class='label'>姓名</view>
-      <view class='value'>{{memberInfo.realName}}</view>
+      <view class='value'>{{userInfo.realName}}</view>
     </view>
     <view class='weui-flex item'>
       <view class='label'>联系电话</view>
-      <view class='value'>{{memberInfo.mobile}}</view>
+      <view class='value'>{{userInfo.mobile}}</view>
     </view>
     <view class='weui-flex item'>
       <view class='label'>性别</view>
-      <view class='value'>{{memberInfo.gender == 1 ? '男' : '女'}}</view>
+      <view class='value'>{{userInfo.gender == 1 ? '男' : '女'}}</view>
     </view>
 
   </view>

@@ -1,0 +1,5 @@
+<view class="container">
+    <view class="weui-btn-area">
+      <button type="warn" bindtap="getUserInfo">微信授权登录</button>
+    </view>
+</view>

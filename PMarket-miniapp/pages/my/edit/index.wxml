@@ -2,7 +2,7 @@
 <view class="container">
 
   <view class="userinfo">
-    <image src='{{ member.avatarUrl }}' class='userinfo-avatar' bindtap="uploadAvatar">
+    <image src='{{ userInfo.avatarUrl }}' class='userinfo-avatar' bindtap="uploadAvatar">
     </image>
   </view>
   <form bindsubmit="bindSave">
@@ -12,7 +12,7 @@
           <view class="weui-label">昵称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="nickname" class="weui-input" placeholder="昵称" value="{{member.nickname}}" />
+          <input name="nickname" class="weui-input" placeholder="昵称" value="{{userInfo.nickname}}" />
         </view>
       </view>
       <view class="weui-cell weui-cell_input">
@@ -20,15 +20,15 @@
           <view class="weui-label">姓名</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="realName" class="weui-input" placeholder="姓名" value="{{member.realName}}" />
+          <input name="realName" class="weui-input" placeholder="姓名" value="{{userInfo.realName}}" />
         </view>
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label">手机号码</view>
+          <view class="weui-label">联系方式</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="mobile" class="weui-input" placeholder="手机号码" value="{{member.mobile}}" />
+          <input name="mobile" class="weui-input" placeholder="联系方式：电话、微信、QQ等" value="{{userInfo.mobile}}" />
         </view>
       </view>
       <view class="weui-cell weui-cell_check">
@@ -37,8 +37,8 @@
         </view>
         <view class="weui-cell__bd">
           <radio-group bindchange="genderChange" name="gender">
-            <radio value="1" checked="{{member.gender == 1}}">男</radio>
-            <radio value="0" checked="{{member.gender == 0}}">女</radio>
+            <radio value="1" checked="{{userInfo.gender == 1}}">男</radio>
+            <radio value="0" checked="{{userInfo.gender == 0}}">女</radio>
           </radio-group>
         </view>
       </view>

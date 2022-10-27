@@ -1,12 +1,12 @@
 <view class="container">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="{{ member.avatarUrl }}" background-size="cover"></image>
-    <view class="nickname" wx:if="{{member}}">
-      <view class="userinfo-nickname">{{ member.nickname }}</view>
+    <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
+    <view class="nickname" wx:if="{{userInfo}}">
+      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
       <label class="userinfo-card">会员</label>
     </view>
 
-    <view class="nickname" bindtap="login" wx:if="{{!member}}">
+    <view class="nickname" bindtap="login" wx:if="{{!userInfo}}">
       <view class="userinfo-nickname">点击登录</view>
     </view>
   </view>
@@ -18,7 +18,7 @@
     </navigator>
   </view>
 
-  <view class="weui-btn-area" wx:if="{{member}}">
+  <view class="weui-btn-area" wx:if="{{userInfo}}">
     <button type="primary" class="weui-btn" bindtap="logout">退出</button>
   </view>
 
