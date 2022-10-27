@@ -22,11 +22,8 @@ Page({
   },
 
   onShow() {
-    var token = wx.getStorageSync('token')
-    if (!token) {
-      return;
-    }
-
+    console.log(this.userInfo);
+    console.log(app.globalData.userInfo);
     this.getMember();
   },
 
@@ -34,20 +31,25 @@ Page({
    * 查询用户信息
    */
   getMember: function () {
-    var that = this;
+    /*var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/member/info',
+      url: app.globalData.domain + '/test',
       data: {
         token: wx.getStorageSync('token')
       },
       success: function (res) {
+        console.log(res.data)
         if (res.data.code == 0) {
           that.setData({
-            member: res.data.member
+            userInfo: app.globalData.userInfo
           })
         }
       }
-    })
+    })*/
+    this.setData({
+      userInfo: app.globalData.userInfo})
+
+      console.log(this.userInfo);
   },
   
   /**
@@ -64,7 +66,7 @@ Page({
       key: 'token',
     })
     this.setData({
-      member: null
+      userInfo: null
     })
   }
 

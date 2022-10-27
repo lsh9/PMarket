@@ -1,4 +1,4 @@
-/* pages/member-info/index.wxss */
+/* pages/my/info/index.wxss */
 page{
   height: 100%
 }

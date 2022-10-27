@@ -1,4 +1,4 @@
-// pages/member-info/index.js
+// pages/my/info/index.js
 const app = getApp();
 Page({
 
@@ -6,19 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    //userInfo: null
   },
 
-  getMemberInfo: function () {
+  getuserInfo: function () {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/member/info',
+      url: app.globalData.domain + '/my/info',
+      method:[GET],
       data: {
-        token: wx.getStorageSync('token')
+        id:app.globalData.domain
       },
       success: function (res) {
         that.setData({
-          memberInfo: res.data.member
+          userInfo: res.data.userInfo
         });
       }
     })
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMemberInfo();
+    this.getuserInfo();
   },
 
   /**
@@ -42,7 +43,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getMemberInfo();
+    this.getuserInfo();
   },
 
   /**

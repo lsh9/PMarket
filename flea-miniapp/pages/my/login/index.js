@@ -12,62 +12,6 @@ Page({
   /**
    * 登录
    */
-  formSubmit: function(e){
-    if (e.detail.value.mobile == '') {
-      wx.showModal({
-        title: '提示',
-        content: '用户名不能为空',
-        showCancel: false,
-        success: function (res) {
-        }
-      })
-    } else if (e.detail.value.password == '') {
-      wx.showModal({
-        title: '提示',
-        content: '密码不能为空',
-        showCancel: false,
-        success: function (res) {
-        }
-      })
-    } else {
-      wx.request({
-        url: app.globalData.domain + "/api/login",
-        method: 'POST',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {
-          loginName: e.detail.value.mobile,
-          password: e.detail.value.password
-        },
-        success: function (res) {
-          if(res.data.code == 0){
-            var token = res.data.token;
-            wx.setStorage({
-              key: 'token',
-              data: token,
-            })
-            
-            wx.navigateBack({
-              
-            })
-          }else{
-            wx.showModal({
-              title: '提示',
-              content: res.data.msg,
-              showCancel: false,
-              success: function (res) {
-              }
-            })
-          }
-          
-        },
-        fail:function(res){
-          console.log(res);
-        }
-      })
-    }
-  },
 
   //授权登录
   getUserInfo: function (r) {
@@ -84,13 +28,6 @@ Page({
       },
       fail: function(res){
       }
-    })
-  },
-
-  // 注册
-  reg: function(){
-    wx.navigateTo({
-      url: '/pages/my/register/index',
     })
   },
 
