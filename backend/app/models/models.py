@@ -46,7 +46,7 @@ class Release(db.Model):
 
 
 class Star(db.Model):
-	__tablename__ = "star"
+	__tablename__ = "tb_star"
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	userId = db.Column(db.Integer, nullable = False)
 	pass
