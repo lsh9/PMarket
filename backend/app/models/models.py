@@ -29,8 +29,8 @@ class Message(db.Model):
 
 class Goods(db.Model):
 	__tablename__ = "tb_goods"
-	msgId = db.Column(db.Integer, nullable = False)
-	goodsId = db.Column(db.Integer, nullable = False)
+	msgId = db.Column(db.Integer, primary_key=True, nullable = False)
+	goodsId = db.Column(db.Integer, primary_key=True, nullable = False)
 	name = db.Column(db.String(255), nullable = False)
 	goodsClass  = db.Column(db.Integer, nullable = False) # 商品小类别（1日用，2数码，3数学，4计算机，5物理，6化学，…… n 其他）
 	price = db.Column(db.Numeric(10,2), nullable = False)
