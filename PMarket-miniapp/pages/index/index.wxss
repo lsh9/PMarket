@@ -1,0 +1,83 @@
+/**index.wxss**/
+swiper{
+  height: 300rpx;
+}
+
+.slide-image{
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.category-container{
+  background: #FFFFFF
+}
+
+.weui-grids{
+  border: none;
+}
+
+.weui-grid{
+  border: none;
+}
+
+.weui-grid.category{
+  width: 25%;
+  padding: 20rpx 0rpx;
+}
+
+.goods-container{
+  padding: 5rpx;
+}
+
+.weui-grid.goods{
+  width: 350rpx;
+  background: #FFFFFF;
+  margin: 10rpx;
+  padding: 0rpx;
+}
+
+.weui-grid__icon.goods{
+  width: 350rpx;
+  height: 350rpx;
+}
+
+.weui-grid__label.goods{
+  text-align: left;
+  padding-left: 6rpx;
+}
+
+.weui-grids .label{
+  font-size: 26rpx;
+}
+
+.weui-grids .price{
+  font-size: 26rpx;
+  color: #e64340
+}
+
+.nickname{
+  font-size: 24rpx;
+  margin-left: 6rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 20rpx;
+  border-left: 6rpx solid #e64340;
+  padding-left: 8rpx;
+}
+
+.types{
+  padding: 10rpx;
+}
+
+.type{
+  font-size:32rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.type.active{
+  border-bottom: 8rpx solid #e64340;
+}
