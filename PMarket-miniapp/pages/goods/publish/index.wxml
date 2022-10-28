@@ -1,2 +1,70 @@
 <!--pages/goods/publish/index.wxml-->
-<text>pages/goods/publish/index.wxml</text>
+<view class='container'>
+  <form bindsubmit='saveGoods'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_check">
+        <view class="weui-cell__hd">
+          <view class="weui-label">类型</view>
+        </view>
+        <view class="weui-cell__bd">
+          <radio-group bindchange="typeChange" name="type">
+            <radio value="1" checked="true">出售</radio>
+            <radio value="2">求购</radio>
+          </radio-group>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">商品名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="goodsName" class="weui-input" placeholder="请输入商品名称" />
+        </view>
+      </view>
+
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">分类</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindCategoryChange" range="{{categoryList}}" range-key="categoryName">
+            <view class="weui-select weui-select_in-select-after">{{categoryList[categoryIndex].categoryName}}</view>
+          </picker>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="goodsName" class="weui-input" placeholder="请选择商品类型" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">商品价格</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="price" class="weui-input" type='number' placeholder="请输入商品价格" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-check__label" hidden='true'>
+        <radio-group bindchange="radioChange">
+          <label wx:for="{{types}}" wx:key="index">
+            <radio name="type" objectFit="cover" value="{{item.key}}" checked="{{item.checked}}" />{{item.value}}
+          </label>
+        </radio-group>
+      </view>
+
+     
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea name="describe" class="weui-textarea" placeholder="请输入商品描述" style="height: 5.3em" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button type="primary" class="weui-btn" form-type="submit">发布</button>
+    </view>
+  </form>
+</view>
