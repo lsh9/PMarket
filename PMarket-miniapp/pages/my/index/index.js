@@ -1,17 +1,23 @@
 const app = getApp()
 
 Page({
+
   data: {
     list: [
       { "name": "我的信息", "url": "/pages/my/info/index" },
       { "name": "我的发售", "url": "/pages/goods/publish-mine/index" },
       { "name": "我的求购", "url": "/pages/goods/buy-mine/index" },
       { "name": "我的收藏", "url": "/pages/goods/goods-like/index" },
-    ]
+    ],
+    userInfo:null
   },
 
   onLoad() {
+    this.getuserInfo();
+  },
 
+  onShow() {
+    this.getuserInfo();
   },
 
   tabNav: function(e){
@@ -21,35 +27,25 @@ Page({
     })
   },
 
-  onShow() {
-    console.log(this.userInfo);
-    console.log(app.globalData.userInfo);
-    this.getMember();
-  },
-
   /**
    * 查询用户信息
    */
-  getMember: function () {
-    /*var that = this;
-    wx.request({
-      url: app.globalData.domain + '/test',
+  getuserInfo: function () {
+    var that = this;
+    if(app.globalData.userInfo.id!=null)
+    {wx.request({
+      url: app.globalData.domain + '/my/info',
+      method:"GET",
       data: {
-        token: wx.getStorageSync('token')
+        id:app.globalData.userInfo.id
       },
       success: function (res) {
-        console.log(res.data)
-        if (res.data.code == 0) {
-          that.setData({
-            userInfo: app.globalData.userInfo
-          })
-        }
+        that.setData({
+          userInfo: res.data
+        });
+        console.log(that.data.userInfo);
       }
-    })*/
-    this.setData({
-      userInfo: app.globalData.userInfo})
-
-      console.log(this.userInfo);
+    })}
   },
   
   /**
@@ -68,6 +64,7 @@ Page({
     this.setData({
       userInfo: null
     })
+    app.logout()
   }
 
 })

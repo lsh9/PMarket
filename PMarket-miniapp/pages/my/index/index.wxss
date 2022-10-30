@@ -25,12 +25,12 @@ scroll-view{
   border-radius: 50%;
 }
 
-.nickname {
+.nickName {
   display: block;
   flex: 1
 }
 
-.userinfo-nickname {
+.userinfo-nickName {
   margin-top: 10rpx;
   color: #fff;
   font-size: 36rpx;

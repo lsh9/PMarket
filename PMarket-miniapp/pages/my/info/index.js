@@ -6,23 +6,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //userInfo: null
+    userInfo: null
   },
 
+  /**
+   * 查询用户信息
+   */
   getuserInfo: function () {
     var that = this;
-    wx.request({
+    if(app.globalData.userInfo.id!=null)
+    {wx.request({
       url: app.globalData.domain + '/my/info',
-      method:[GET],
+      method:"GET",
       data: {
-        id:app.globalData.domain
+        id:app.globalData.userInfo.id
       },
       success: function (res) {
         that.setData({
-          userInfo: res.data.userInfo
+          userInfo: res.data
         });
+        console.log(that.data.userInfo);
       }
-    })
+    })}
   },
 
   /**

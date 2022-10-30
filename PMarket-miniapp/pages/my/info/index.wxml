@@ -3,7 +3,7 @@
   <view class="userinfo">
     <image src='{{ userInfo.avatarUrl }}' class='userinfo-avatar'>
     </image>
-    <view class="userinfo-nickname">{{ userInfo.nickname }}</view>
+    <view class="userinfo-nickName">{{ userInfo.nickName }}</view>
   </view>
 
   <view class='basic'>
@@ -11,14 +11,10 @@
       <view class="label title">基本信息</view>
       <view class='value edit' bindtap='edit'>编辑</view>
     </view>
-
+  
     <view class='weui-flex item'>
-      <view class='label'>姓名</view>
-      <view class='value'>{{userInfo.realName}}</view>
-    </view>
-    <view class='weui-flex item'>
-      <view class='label'>联系电话</view>
-      <view class='value'>{{userInfo.mobile}}</view>
+      <view class='label'>联系方式</view>
+      <view class='value'>{{userInfo.contact}}</view>
     </view>
     <view class='weui-flex item'>
       <view class='label'>性别</view>

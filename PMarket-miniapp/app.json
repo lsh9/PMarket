@@ -6,7 +6,6 @@
     "pages/my/info/index",
     "pages/my/edit/index",
     "pages/my/login/index",
-    "pages/my/register/index",
     "pages/goods/goods-list/index",
     "pages/goods/goods-detail/index",
     "pages/goods/goods-like/index",
@@ -18,7 +17,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "二手交易平台",
+    "navigationBarTitleText": "摆大鱼-PMarket",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
