@@ -9,7 +9,7 @@ App({
     var that = this;
     wx.login({
       success: function (res) {
-        var code = res.code; // 微信登录接口返回的 code 参数
+        var code = res.code; // 微信登录接口返回的code参数
         wx.request({
           url: that.globalData.domain + '/my/login',
           method:"POST",
