@@ -1,28 +1,20 @@
 // pages/classify/index.js
-<<<<<<< HEAD
 
 const app = getApp()
 
-=======
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-<<<<<<< HEAD
     activeIndex: 0,
     categoryList: []
-=======
-
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-<<<<<<< HEAD
   onLoad: function (options) {
     this.getCategory();
     this.getGoodsList(-1)
@@ -40,7 +32,7 @@ Page({
   getCategory: function () {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/category/list',
+      url: app.globalData.domain + '/classify/getCategory',
       data: {},
       success: function (res) {
         if (res.data.code == 0) {
@@ -64,7 +56,7 @@ Page({
   getGoodsList: function (categoryId) {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/goods/list',
+      url: app.globalData.domain + '/classify/getGoodsList',
       data: {
         categoryId: categoryId
       },
@@ -74,86 +66,54 @@ Page({
         });
       }
     })
-=======
-  onLoad(options) {
-
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-<<<<<<< HEAD
   onReady: function () {
-=======
-  onReady() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-<<<<<<< HEAD
   onShow: function () {
-=======
-  onShow() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-<<<<<<< HEAD
   onHide: function () {
-=======
-  onHide() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-<<<<<<< HEAD
   onUnload: function () {
-=======
-  onUnload() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-<<<<<<< HEAD
   onPullDownRefresh: function () {
-=======
-  onPullDownRefresh() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-<<<<<<< HEAD
   onReachBottom: function () {
-=======
-  onReachBottom() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   },
 
   /**
    * 用户点击右上角分享
    */
-<<<<<<< HEAD
   onShareAppMessage: function () {
-=======
-  onShareAppMessage() {
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
 
   }
 })

@@ -1,5 +1,4 @@
 <!--pages/classify/index.wxml-->
-<<<<<<< HEAD
 <view class='container'>
 
 <view class="weui-flex">
@@ -26,6 +25,3 @@
 </view>
 
 </view>
-=======
-<text>pages/classify/index.wxml</text>
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
