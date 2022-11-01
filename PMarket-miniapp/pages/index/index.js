@@ -16,7 +16,6 @@ Page({
   },
 
   onLoad: function() {
-    this.getAdvert();
     this.getGoods();
   },
 
@@ -31,27 +30,12 @@ Page({
     })
   },
 
-  //查询轮播
-  getAdvert: function() {
-    var that = this;
-    wx.request({
-      url: app.globalData.domain + '/api/advert/list',
-      data: {
-        position: 'shop'
-      },
-      success: function(res) {
-        that.setData({
-          bannerList: res.data.advertList
-        });
-      }
-    })
-  },
-
   //查询商品
   getGoods: function() {
     var that = this;
     wx.request({
       url: app.globalData.domain + '/index/getGoods',
+      method:"GET",
       data: {
         page: that.data.page,
         limit: that.data.pageSize
@@ -104,7 +88,6 @@ Page({
       page: 1
     });
     wx.showNavigationBarLoading()
-    this.getAdvert();
     this.getGoods();
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载

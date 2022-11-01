@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.getCategory();
-    this.getGoodsList(-1)
+    this.getGoodsList(0)
   },
 
   //点击分类
@@ -33,6 +33,7 @@ Page({
     var that = this;
     wx.request({
       url: app.globalData.domain + '/classify/getCategory',
+      method:"GET",
       data: {},
       success: function (res) {
         if (res.data.code == 0) {
@@ -57,6 +58,7 @@ Page({
     var that = this;
     wx.request({
       url: app.globalData.domain + '/classify/getGoodsList',
+      method:"GET",
       data: {
         categoryId: categoryId
       },

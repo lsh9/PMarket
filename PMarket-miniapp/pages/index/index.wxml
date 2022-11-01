@@ -17,16 +17,6 @@
     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
   </view>
 
-  <view class="swiper-container">
-    <swiper indicator-dots class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{bannerList}}" wx:key="index">
-        <swiper-item>
-          <image bindtap="tapBanner" data-id="{{item.link}}" src="{{item.picUrl}}" class="slide-image" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-
   <view class="category-container" hidden="true">
     <view class="weui-grids">
       <block wx:for="{{categoryList}}" wx:key="index">
