@@ -18,7 +18,7 @@
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="goodsName" class="weui-input" placeholder="请输入商品名称" />
+          <input name="name" class="weui-input" placeholder="请输入商品名称" />
         </view>
       </view>
 
@@ -33,7 +33,7 @@
           </picker>
         </view>
         <view class="weui-cell__bd">
-          <input name="goodsName" class="weui-input" placeholder="请选择商品类型" />
+          <input name="category" class="weui-input" placeholder="请选择商品类型" />
         </view>
       </view>
 
@@ -58,7 +58,7 @@
 
       <view class="weui-cell">
         <view class="weui-cell__bd">
-          <textarea name="describe" class="weui-textarea" placeholder="请输入商品描述" style="height: 5.3em" />
+          <textarea name="description" class="weui-textarea" placeholder="请输入商品描述" style="height: 5.3em" />
         </view>
       </view>
     </view>

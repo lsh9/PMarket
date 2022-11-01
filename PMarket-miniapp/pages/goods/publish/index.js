@@ -1,4 +1,5 @@
 // pages/goods/publish/index.js
+//尚存在一些未完全完善的图片处理等，第一次测试主要任务为测试名字、价格和描述的正确传输。
 Page({
 
   /**
@@ -46,8 +47,8 @@ Page({
 
   saveGoods: function(e) {
     var that = this;
-    var goodsName = e.detail.value.goodsName;
-    if (goodsName == '') {
+    var name = e.detail.value.name;//获取商品名字
+    if (name == '') {
       wx.showToast({
         title: '请填写商品名称',
         icon: 'none'
@@ -55,8 +56,8 @@ Page({
       return;
     }
 
-    var price = e.detail.value.price;
-    if (price == '') {
+    var price = e.detail.value.price;//获取价格
+    if (price == '') {//不能为空
       wx.showToast({
         title: '请填写价格',
         icon: 'none'
@@ -64,16 +65,16 @@ Page({
       return;
     }
 
-    if (that.data.picUrls.length == 0) {
+    /*if (that.data.picUrls.length == 0) {
       wx.showToast({
         title: '请上传商品图片',
         icon: 'none'
       })
       return;
-    }
+    }*/
 
-    var describe = e.detail.value.describe;
-    if (describe == '') {
+    var description = e.detail.value.description;//获取描述信息
+    if (description == '') {//不能为空
       wx.showToast({
         title: '请填写商品描述',
         icon: 'none'
@@ -89,17 +90,31 @@ Page({
     }
 
     var goods = {
-      type: e.detail.value.type,
-      goodsName: goodsName,
-      describe: describe,
-      categoryId: that.data.categoryList[that.data.categoryIndex].id,
-      price: price,
+      type: e.detail.value.type,//类型：目前默认为出售，1
+      name: name,//商品名字
+      description: description,//商品描述
+      //categoryId: that.data.categoryList[that.data.categoryIndex].id,
+      price: price,//商品价格
       picUrl: that.data.picUrls[0],
       picUrls: that.data.picUrls,
       stock: 1
     };
     //等待添加更多交互（？）
+    wx.request({
+      url: app.globalData.domain + '/goods/publish',
+      method:'POST',
+      data: goods,
+      success:(res) =>{
+        wx.showModal({
+          title: '提示',
+          content: "发布成功",
+          showCancel: false
+        })
+      }
+    })
   },
+
+  
 
 
   /**
