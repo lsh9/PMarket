@@ -12,6 +12,7 @@ Page({
     isLoad: false,
     page: 1,
     pageSize: 10,
+    goodsNum: -1,
     type: 1
   },
 
@@ -37,13 +38,15 @@ Page({
       url: app.globalData.domain + '/index/getGoods',
       method:"GET",
       data: {
-        page: that.data.page,
-        limit: that.data.pageSize
+        beginNo: that.data.goodsNum,
+        number: that.data.pageSize
       },
       success: function(res) {
-        that.setData({
-          goodsList: []
-        });
+        if (that.data.page == 1) { //判断是否第一页
+          that.setData({
+            goodsList: []
+          });
+        }
         if (res.data.code != 0) { //请求异常
           that.setData({
             isLoad: false
@@ -64,6 +67,10 @@ Page({
           goodsList: goods,
           isLoad: false
         });
+        var noNow = res.data.no; //设置目前得到的最小商品号
+        that.setData({
+          goodsNum: noNow
+        })
       }
     })
   },
@@ -85,7 +92,8 @@ Page({
   //下拉加载
   onPullDownRefresh: function() {
     this.setData({
-      page: 1
+      page: 1,
+      goodsNum: -1
     });
     wx.showNavigationBarLoading()
     this.getGoods();

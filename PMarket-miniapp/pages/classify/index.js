@@ -9,7 +9,9 @@ Page({
    */
   data: {
     activeIndex: 0,
-    categoryList: []
+    categoryList: [],
+    page: 1,
+    goodsNum: -1
   },
 
   /**
@@ -23,7 +25,9 @@ Page({
   //点击分类
   tabClick: function (e) {
     this.setData({
-      activeIndex: e.currentTarget.id
+      activeIndex: e.currentTarget.id,
+      page: 1,
+      goodsNum: -1
     });
     this.getGoodsList(e.currentTarget.dataset.id);
   },
@@ -31,26 +35,20 @@ Page({
   //查询分类
   getCategory: function () {
     var that = this;
-    wx.request({
-      url: app.globalData.domain + '/classify/getCategory',
-      method:"GET",
-      data: {},
-      success: function (res) {
-        if (res.data.code == 0) {
-          var categoryList = [{
-            id: -1,
-            categoryName: '全部'
-          }]
-          for (var i = 0; i < res.data.categoryList.length; i++) {
-            categoryList.push(res.data.categoryList[i]);
-          }
-          that.setData({
-            categoryList: categoryList
-          });
+    var categoryList = [{
+      id: 0,
+      categoryName: '书籍'
+    }, {
+      id: 1,
+      categoryName: '日用'
+    }, {
+      id: 2,
+      categoryName: '数码'
+    }];
 
-        }
-      }
-    })
+    that.setData({
+      categoryList: categoryList
+    });
   },
 
   //查询商品
@@ -102,14 +100,37 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      page: 1,
+      goodsNum: -1
+    });
+    wx.showNavigationBarLoading()
+    this.getGoodsList(this.data.activeIndex);
+    setTimeout(function() {
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1000);
   },
+
+    //上拉加载
+    loadMore: function () {
+      console.log("load more")
+      var that = this;
+      var isLoad = this.data.isLoad;
+      console.log(isLoad)
+      if (!isLoad) {
+        this.setData({
+          page: that.data.page + 1
+        });
+        this.getGoods();
+      }
+    },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMore();
   },
 
   /**

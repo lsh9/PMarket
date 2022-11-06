@@ -13,9 +13,9 @@
     <view class='category-container'>
       <view class="weui-grids">
         <block wx:for="{{goodsList}}" wx:key="index">
-          <navigator url="../goods/goods-detail/index?goodsId={{item.id}}" class="weui-grid category">
-            <image class="weui-grid__icon" src="{{item.picUrl}}" />
-            <view class="weui-grid__label goods_name">{{item.goodsName}}</view>
+          <navigator url="../goods/goods-detail/index?goodsId={{item.goodsId}}" class="weui-grid category">
+            <image class="weui-grid__icon" src="{{item.pictureUrl}}" />
+            <view class="weui-grid__label goods_name">{{item.name}}</view>
             <view class="weui-grid__label price">￥{{item.price}}</view>
           </navigator>
         </block>

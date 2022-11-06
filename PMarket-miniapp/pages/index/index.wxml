@@ -36,14 +36,10 @@
     <view class="title">最近发布</view>
     <view class="weui-grids">
       <block wx:for="{{goodsList}}" wx:key="index">
-        <navigator url="../goods/goods-detail/index?goodsId={{item.id}}" class="weui-grid goods">
-          <image class="weui-grid__icon goods" src="{{item.picUrl}}" />
-          <view class="weui-grid__label goods goods-name">{{item.goodsName}}</view>
+        <navigator url="../goods/goods-detail/index?goodsId={{item.goodsId}}" class="weui-grid goods">
+          <image class="weui-grid__icon goods" src="{{item.pictureUrl}}" />
+          <view class="weui-grid__label goods goods-name">{{item.name}}</view>
           <view class="weui-grid__label goods price">¥ {{item.price}}</view>
-          <view class="weui-flex" style="align-items: center; padding: 6rpx">
-            <image class="avatar" src="{{item.member.avatarUrl}}"></image>
-            <label class="nickname">{{item.member.nickname}}</label>
-          </view>
         </navigator>
       </block>
     </view>
