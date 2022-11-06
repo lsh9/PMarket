@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //index.js
 //获取应用实例
 const app = getApp()
@@ -13,11 +12,11 @@ Page({
     isLoad: false,
     page: 1,
     pageSize: 10,
+    goodsNum: -1,
     type: 1
   },
 
   onLoad: function() {
-    this.getAdvert();
     this.getGoods();
   },
 
@@ -32,35 +31,22 @@ Page({
     })
   },
 
-  //查询轮播
-  getAdvert: function() {
-    var that = this;
-    wx.request({
-      url: app.globalData.domain + '/api/advert/list',
-      data: {
-        position: 'shop'
-      },
-      success: function(res) {
-        that.setData({
-          bannerList: res.data.advertList
-        });
-      }
-    })
-  },
-
   //查询商品
   getGoods: function() {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/index/goods',
+      url: app.globalData.domain + '/index/getGoods',
+      method:"GET",
       data: {
-        page: that.data.page,
-        limit: that.data.pageSize
+        beginNo: that.data.goodsNum,
+        number: that.data.pageSize
       },
       success: function(res) {
-        that.setData({
-          goodsList: []
-        });
+        if (that.data.page == 1) { //判断是否第一页
+          that.setData({
+            goodsList: []
+          });
+        }
         if (res.data.code != 0) { //请求异常
           that.setData({
             isLoad: false
@@ -81,6 +67,10 @@ Page({
           goodsList: goods,
           isLoad: false
         });
+        var noNow = res.data.no; //设置目前得到的最小商品号
+        that.setData({
+          goodsNum: noNow
+        })
       }
     })
   },
@@ -102,10 +92,10 @@ Page({
   //下拉加载
   onPullDownRefresh: function() {
     this.setData({
-      page: 1
+      page: 1,
+      goodsNum: -1
     });
     wx.showNavigationBarLoading()
-    this.getAdvert();
     this.getGoods();
     setTimeout(function() {
       wx.hideNavigationBarLoading() //完成停止加载
@@ -133,71 +123,5 @@ Page({
   */
   onReachBottom: function () {
     this.loadMore();
-=======
-// pages/index/index.js
-Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
->>>>>>> 381d95262e78154b2ea2d5b7f7ef6800c0819742
   }
 })
