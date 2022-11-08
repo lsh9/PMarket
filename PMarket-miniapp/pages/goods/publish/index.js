@@ -1,175 +1,171 @@
-// pages/goods/publish/index.js
-//尚存在一些未完全完善的图片处理等，第一次测试主要任务为测试名字、价格和描述的正确传输。
+// pages/testt/testt.js
+
+const app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    categoryList: [],
-    categoryIndex: 0,
-    picUrls: [],
-    title: '',
-    opacity: '0.4',
-    width: '85',
-    position: 'center',
-    type: 1
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        imageurl: '',
+        picUrls: [],
+        title: '',
+        opacity: '0.4',
+        width: '85',
+        position: 'center',
+        type: 1
+    },
 
-  radioChange: function(e) {
-    this.setData({
-      type: e.detail.value
-    })
-  },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad(options) {
 
-  bindCategoryChange: function(e) {
-    this.setData({
-      categoryIndex: e.detail.value
-    })
-  },
+    },
 
-  getCategoryIndex: function(categoryId) {
-    for (var i = 0; i < this.data.categoryList.length; i++) {
-      if (categoryId == this.data.categoryList[i].categoryId) {
-        return i;
-      }
-    }
-  },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
 
-  del(e){
-    var that = this;
-    var i = e.currentTarget.dataset.index;
-    this.data.picUrls.splice(i, 1)
-    this.setData({
-      picUrls: that.data.picUrls
-    });
-  },
+    },
 
-  saveGoods: function(e) {
-    var that = this;
-    var name = e.detail.value.name;//获取商品名字
-    if (name == '') {
-      wx.showToast({
-        title: '请填写商品名称',
-        icon: 'none'
-      })
-      return;
-    }
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
 
-    var price = e.detail.value.price;//获取价格
-    if (price == '') {//不能为空
-      wx.showToast({
-        title: '请填写价格',
-        icon: 'none'
-      })
-      return;
-    }
+    },
 
-    /*if (that.data.picUrls.length == 0) {
-      wx.showToast({
-        title: '请上传商品图片',
-        icon: 'none'
-      })
-      return;
-    }*/
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide() {
 
-    var description = e.detail.value.description;//获取描述信息
-    if (description == '') {//不能为空
-      wx.showToast({
-        title: '请填写商品描述',
-        icon: 'none'
-      })
-      return;
-    }
+    },
 
-    var goodsPicList = [];
-    for (var i = 0; i < that.data.picUrls.length; i++) {
-      goodsPicList.push({
-        pic: that.data.picUrls[i]
-      });
-    }
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload() {
 
-    var goods = {
-      type: e.detail.value.type,//类型：目前默认为出售，1
-      name: name,//商品名字
-      description: description,//商品描述
-      //categoryId: that.data.categoryList[that.data.categoryIndex].id,
-      price: price,//商品价格
-      picUrl: that.data.picUrls[0],
-      picUrls: that.data.picUrls,
-      stock: 1
-    };
-    //等待添加更多交互（？）
-    wx.request({
-      url: app.globalData.domain + '/goods/publish',
-      method:'POST',
-      data: goods,
-      success:(res) =>{
-        wx.showModal({
-          title: '提示',
-          content: "发布成功",
-          showCancel: false
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh() {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom() {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+
+    },
+
+    uploadimage: function () {//选择并上传图片
+        var that = this;
+        wx.chooseMedia({
+            count: 1,
+            mediaType: ['image'],
+            sourceType: ['album'],
+            success(res) {
+                var tempFilePath = res.tempFiles.tempFilePath
+                wx.uploadFile({
+                    filePath: tempFilePath,
+                    name: 'image',
+                    url: app.globalData.domain + '/image/upload/goods',
+                    success: (res) => {
+                        wx.showModal({
+                            title: '提示',
+                            content: "图片上传成功",
+                            showCancel: false
+                        })
+                    }
+                })
+            }
         })
-      }
-    })
-  },
-
-  
+    },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
 
-  },
+    saveGoods: function (e) {
+        var that = this;
+        var Name = e.detail.value.Name;//获取商品名称
+        if (Name == '') {
+            wx.showToast({
+                title: '请填写商品名称',
+                icon: 'none'
+            })
+            return;
+        }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+        var price = e.detail.value.price;//获取商品价格
+        if (price == '') {
+            wx.showToast({
+                title: '请填写价格',
+                icon: 'none'
+            })
+            return;
+        }
 
-  },
+        var contact = e.detail.value.contact;//获取商品价格
+        if (contact == '') {
+            wx.showToast({
+                title: '请留下联络方式',
+                icon: 'none'
+            })
+            return;
+        }
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+        /*if (that.data.picUrls.length == 0) {
+          wx.showToast({
+            title: '请上传商品图片',
+            icon: 'none'
+          })
+          return;
+        }*/
 
-  },
+        var description = e.detail.value.description;
+        if (description == '') {
+            wx.showToast({
+                title: '请填写商品描述',
+                icon: 'none'
+            })
+            return;
+        }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+        var userId = app.globalData.userId;
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+        var goods = {
+            type: e.detail.value.type,//类型
+            Name: Name,//商品名称
+            description: description,//商品描述
+            //categoryId: that.data.categoryList[that.data.categoryIndex].id,
+            price: price,//商品价格
+            contact: contact,//联系方式
+            userId,//用户ID
+        };
+        wx.request({
+            url: app.globalData.domain + '/goods/publish',
+            method: 'POST',
+            data: goods,
+            success: (res) => {
+                wx.showModal({
+                    title: '提示',
+                    content: "发布成功",
+                    showCancel: false
+                })
+            }
+        })
+    }
 })

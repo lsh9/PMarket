@@ -46,6 +46,24 @@
         </view>
       </view>
 
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系方式</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="contact" class="weui-input" type='text' placeholder="请输入联系方式" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">商品描述</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="description" class="weui-input" type='text' placeholder="请输入商品描述" />
+        </view>
+      </view>
+
       <view class="weui-cell weui-check__label" hidden='true'>
         <radio-group bindchange="radioChange">
           <label wx:for="{{types}}" wx:key="index">
@@ -54,13 +72,9 @@
         </radio-group>
       </view>
 
-     
+      <button bindtap="uploadimage">上传图片</button>
 
-      <view class="weui-cell">
-        <view class="weui-cell__bd">
-          <textarea name="description" class="weui-textarea" placeholder="请输入商品描述" style="height: 5.3em" />
-        </view>
-      </view>
+      
     </view>
 
     <view class="weui-btn-area">
