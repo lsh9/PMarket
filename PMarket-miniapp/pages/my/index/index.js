@@ -32,12 +32,12 @@ Page({
    */
   getuserInfo: function () {
     var that = this;
-    if(app.globalData.userInfo.id!=null)
+    if(app.globalData.userId!=null)
     {wx.request({
       url: app.globalData.domain + '/my/info',
       method:"GET",
       data: {
-        id:app.globalData.userInfo.id
+        id:app.globalData.userId
       },
       success: function (res) {
         that.setData({

@@ -22,14 +22,11 @@ App({
           success: (res) => {
             console.log(res.data);
             console.log(userInfo);
-            console.log(that.globalData.userInfo);
+            console.log(that.globalData.userId);
             if (res.data.code==0) {
               wx.hideLoading();
-              that.globalData.userInfo.nickName = userInfo.nickName;
-              that.globalData.userInfo.gender=userInfo.gender;
-              that.globalData.userInfo.avatarUrl=userInfo.avatarUrl;
-              that.globalData.userInfo.id=res.data.id;
-              console.log(that.globalData.userInfo);
+              that.globalData.userId=res.data.id;
+              console.log(that.globalData.userId);
               callback(0);
             } else {
               // 登录错误 
@@ -48,25 +45,12 @@ App({
   },
 
   logout: function(){
-    this.globalData.userInfo={
-      id:	null,// 用户识别编号
-      nickName:	null,	// 用户昵称
-      avatarUrl:	null,	// 头像
-      gender:	   null,   // 性别
-      contact:	null	// 联系方式
-    }
+    this.globalData.userId=null
   },
 
   globalData: {
-    userInfo:
-    {
-      id:	null,// 用户识别编号
-      nickName:	null,	// 用户昵称
-      avatarUrl:	null,	// 头像
-      gender:	   null,   // 性别
-      contact:	null	// 联系方式
-    },
-    //domain: "1.117.242.95:3306" 
+    userId: null,
+    //domain: "http://1.117.242.95:80" 
     domain: "http://47.93.251.137:80" //课程服务器
   }
 })

@@ -35,12 +35,12 @@ Page({
    */
   getuserInfo: function () {
     var that = this;
-    if(app.globalData.userInfo.id!=null)
+    if(app.globalData.userId!=null)
     {wx.request({
       url: app.globalData.domain + '/my/info',
       method:"GET",
       data: {
-        id:app.globalData.userInfo.id
+        id:app.globalData.userId
       },
       success: function (res) {
         that.setData({
@@ -96,25 +96,25 @@ Page({
     })
   },
 
-  /*
+  
   uploadAvatar(){
     wx.chooseMedia({
       success: function(res) {
         console.log(res.tempFiles[0].tempFilePath);
         wx.uploadFile({
-          url: app.globalData.domain + '/my/upload',
+          url: app.globalData.domain + '/image/upload/avatar',
           filePath:res.tempFiles[0].tempFilePath,
-          name: 'userAvatar',
+          name: 'image',
           success: function(res) {
-            console.log(res.data);
-            if (res.data.code == 0) {
+            console.log(res);
+            if (res.statusCode==200) {
               wx.showToast({
                 title: '上传成功',
                 icon: 'success',
                 duration: 2000
               })
               var user = this.data.userInfo;
-              user.avatarUrl = res.data.avatarUrl;
+              user.avatarUrl = res.data.url;
               this.setData({
                 userInfo:user
               })
@@ -136,7 +136,7 @@ Page({
       }
     })
   },
-  */
+  
  
   /**
    * 生命周期函数--监听页面隐藏
