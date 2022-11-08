@@ -11,7 +11,8 @@ Page({
     activeIndex: 0,
     categoryList: [],
     page: 1,
-    goodsNum: -1
+    goodsNum: -1,
+    pageSize: 10
   },
 
   /**
@@ -58,11 +59,14 @@ Page({
       url: app.globalData.domain + '/classify/getGoodsList',
       method:"GET",
       data: {
-        categoryId: categoryId
+        categoryId: categoryId,
+        beginNo: that.data.goodsNum,
+        number: that.data.pageSize
       },
       success: function (res) {
         that.setData({
-          goodsList: res.data.goodsList
+          goodsList: res.data,
+          goodsNum: res.data[res.data.length-1].goodsId
         });
       }
     })
@@ -122,7 +126,7 @@ Page({
         this.setData({
           page: that.data.page + 1
         });
-        this.getGoods();
+        this.getGoodsList(that.activeIndex);
       }
     },
 

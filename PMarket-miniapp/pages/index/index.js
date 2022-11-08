@@ -11,7 +11,7 @@ Page({
     goodsList: [],
     isLoad: false,
     page: 1,
-    pageSize: 10,
+    pageSize: 4,
     goodsNum: -1,
     type: 1
   },
@@ -47,27 +47,27 @@ Page({
             goodsList: []
           });
         }
-        if (res.data.code != 0) { //请求异常
+        /* if (res.data.code != 0) { //请求异常
           that.setData({
             isLoad: false
           });
           return;
-        }
-        if (res.data.goodsList.length == 0) {
+        } */
+        if (res.data.length == 0) {
           that.setData({
             isLoad: true
           });
           return;
         }
         var goods = that.data.goodsList;
-        for (var i = 0; i < res.data.goodsList.length; i++) {
-          goods.push(res.data.goodsList[i]);
+        for (var i = 0; i < res.data.length; i++) {
+          goods.push(res.data[i]);
         }
         that.setData({
           goodsList: goods,
           isLoad: false
         });
-        var noNow = res.data.no; //设置目前得到的最小商品号
+        var noNow = res.data[res.data.length-1].goodsId; //设置目前得到的最小商品号
         that.setData({
           goodsNum: noNow
         })
