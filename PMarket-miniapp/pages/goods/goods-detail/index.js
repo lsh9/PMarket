@@ -9,7 +9,7 @@ Page({
     interval: 3000,
     duration: 1000,
     goods: {},
-    isGoodsFavorite: false
+//    isGoodsFavorite: false
 
   },
 
@@ -21,8 +21,7 @@ Page({
       id: options.goodsId
     })
     this.getGoods(options.goodsId);
-    this.getComment(options.goodsId)
-    this.getCollect(options.goodsId)
+//    this.getCollect(options.goodsId)
 
   },
 
@@ -30,9 +29,10 @@ Page({
   getGoods: function (goodsId) {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/goods/detail',
+      url: app.globalData.domain + '/goods/publish',
       data: {
-        id: goodsId
+        goods: goods,
+        Userid: userid
       },
       success: function (res) {
         that.setData({
@@ -41,6 +41,7 @@ Page({
       }
     })
   },
+  /*
     //收藏
   collect(e) {
     if (!wx.getStorageSync('token')) {
@@ -87,7 +88,7 @@ Page({
       }
     })
   },
-
+*/
 
 
   /**
