@@ -37,7 +37,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          goods: res.data.goods,
+          goods: res.data.Goods,
         });
       }
     })
