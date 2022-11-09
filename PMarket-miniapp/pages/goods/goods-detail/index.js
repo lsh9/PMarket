@@ -1,4 +1,5 @@
 // pages/goods/goods-detail/index.js
+const app = getApp()
 Page({
 
   /**
@@ -29,10 +30,10 @@ Page({
   getGoods: function (goodsId) {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/goods/publish',
+      url: app.globalData.domain + '/goods/getGoodsId',
+      method:"GET",
       data: {
-        goods: goods,
-        Userid: userid
+        goodsId: goodsId
       },
       success: function (res) {
         that.setData({
