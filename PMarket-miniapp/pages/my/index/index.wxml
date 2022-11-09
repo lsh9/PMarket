@@ -1,6 +1,6 @@
 <view class="container">
   <view class="userinfo">
-    <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover">
+    <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="100% 100%">
     </image>
     <view class="nickName" wx:if="{{userInfo.id}}">
       <view class="userinfo-nickName">{{ userInfo.nickName }}</view>
