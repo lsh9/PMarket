@@ -72,8 +72,8 @@ Page({
       return
     }
     var data = e.detail.value;
-    data.id = this.data.userInfo.id;
-    data.avatarUrl=this.data.userInfo.avatarUrl;
+    data.id = that.data.userInfo.id;
+    data.avatarUrl=that.data.userInfo.avatarUrl;
     console.log(data);
     wx.request({
       url: app.globalData.domain + '/my/edit',
@@ -96,26 +96,35 @@ Page({
     })
   },
 
-  
+
   uploadAvatar(){
+    var that =this;
     wx.chooseMedia({
+      count: 1,
+      mediaType: 'image',
+      sourceType: ['album', 'camera'],
       success: function(res) {
         console.log(res.tempFiles[0].tempFilePath);
+        var lastImage=that.data.userInfo.avatarUrl;
         wx.uploadFile({
           url: app.globalData.domain + '/image/upload/avatar',
           filePath:res.tempFiles[0].tempFilePath,
           name: 'image',
+          formData: {
+            'last': lastImage
+          },
           success: function(res) {
-            console.log(res);
+            console.log(res.data);
+            const data = res.data
             if (res.statusCode==200) {
               wx.showToast({
                 title: '上传成功',
                 icon: 'success',
                 duration: 2000
               })
-              var user = this.data.userInfo;
-              user.avatarUrl = res.data.url;
-              this.setData({
+              var user = that.data.userInfo;
+              user.avatarUrl = data;
+              that.setData({
                 userInfo:user
               })
             }
