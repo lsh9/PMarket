@@ -18,7 +18,7 @@
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="name" class="weui-input" placeholder="请输入商品名称" />
+          <input name="Name" class="weui-input" placeholder="请输入商品名称" />
         </view>
       </view>
 
@@ -28,12 +28,7 @@
           <view class="weui-label">分类</view>
         </view>
         <view class="weui-cell__bd">
-          <picker bindchange="bindCategoryChange" range="{{categoryList}}" range-key="categoryName">
-            <view class="weui-select weui-select_in-select-after">{{categoryList[categoryIndex].categoryName}}</view>
-          </picker>
-        </view>
-        <view class="weui-cell__bd">
-          <input name="category" class="weui-input" placeholder="请选择商品类型" />
+          <input name="category" class="weui-input" placeholder="先填写商品类型" />
         </view>
       </view>
 
@@ -64,13 +59,7 @@
         </view>
       </view>
 
-      <view class="weui-cell weui-check__label" hidden='true'>
-        <radio-group bindchange="radioChange">
-          <label wx:for="{{types}}" wx:key="index">
-            <radio name="type" objectFit="cover" value="{{item.key}}" checked="{{item.checked}}" />{{item.value}}
-          </label>
-        </radio-group>
-      </view>
+      
 
       <button bindtap="uploadimage">上传图片</button>
 
