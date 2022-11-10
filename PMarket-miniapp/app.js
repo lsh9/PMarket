@@ -1,7 +1,9 @@
 //app.js
 App({
   onLaunch: function () {
-
+    wx.navigateTo({
+      url: '/pages/my/login/index',
+    })
   },
   
   //微信授权登录

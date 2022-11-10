@@ -20,14 +20,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    if(app.globalData.userId==null){
+      wx.navigateTo({
+        url: '/pages/my/login/index',
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    if(app.globalData.userId==null){
+      wx.navigateTo({
+        url: '/pages/my/login/index',
+      })
+    }
   },
 
   /**
@@ -104,6 +112,15 @@ uploadimage: function(e){
 saveGoods: function(e) {
   var that = this;
   var name = e.detail.value.name;//获取商品名称
+
+  if(app.globalData.userId==null){
+    wx.showToast({
+      title: '请先登录再发布商品',
+      icon: 'none'
+    })
+    return;
+  }
+
   if (name == '') {
     wx.showToast({
       title: '请填写商品名称',

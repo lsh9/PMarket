@@ -2,7 +2,7 @@
 <view class="container">
 
   <view class="img-box">
-        <image src="{{goods.pictureURL}}" class="image" />
+        <image src="{{goods.pictureUrl}}" class="image" />
   </view>
 
   <view class="weui-flex goods-info" style="align-items: center">
@@ -15,6 +15,8 @@
   <view class="goods-info">
     <view class='title'>商品描述</view>
     <text>{{goods.description == null ? '' : goods.description}}</text>
+    <view class='title'>联系方式</view>
+    <text>{{goods.contact == null ? '' : goods.contact}}</text>
   </view>
 
 </view>
