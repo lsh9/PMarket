@@ -45,3 +45,9 @@
   width: 70rpx;
   height: 70rpx;
 }
+
+.delete image{
+  width: 70rpx;
+  height: 70rpx;
+
+}

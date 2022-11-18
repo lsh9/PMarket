@@ -25,6 +25,12 @@
         <image src="/images/like-on.png" wx:if="{{isGoodsFavorite}}"></image>
       </view>
     </view>
+
+    <view>
+      <view class="delete" bindtap="remove">
+        <image src="/images/remove.png" ></image>
+      </view>
+    </view>
 <<<<<<< Updated upstream
   </view>
 

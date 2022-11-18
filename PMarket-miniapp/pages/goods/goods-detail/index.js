@@ -22,7 +22,7 @@ Page({
     })
     this.getGoods(options.goodsId);
     this.getCollect(options.goodsId)
-
+    this.deleteGoods(options.goodsId)
   },
 
   //查询商品详情
@@ -41,6 +41,31 @@ Page({
       }
     })
   },
+
+  //删除
+  deleteGoods: function (goodsId) {
+    wx.request({
+      url: app.globalData.domain + '/goods/delete',
+      method:'POST',
+      data: data,
+      success: function (res) {
+        if (res.data.code != 0) {
+          // 错误 
+          wx.showModal({
+            title: '错误',
+            content: res.data.msg,
+            showCancel: false
+          })
+          return;
+        }
+        wx.navigateBack({})
+      }
+
+
+
+    })
+  },
+
 
     //收藏
   collect(e) {
@@ -72,7 +97,7 @@ Page({
   getCollect(goodsId) {
     var that = this;
     wx.request({
-      url: app.globalData.domain + '/api/collect/isCollect',
+      url: app.globalData.domain + '/goods/collect/',  //not yet
       data: {
         goodsId: goodsId
       },
