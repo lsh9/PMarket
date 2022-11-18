@@ -15,12 +15,17 @@
       <view class="goods-name">{{goods.goodsName}}</view>
       <view class="price">￥{{goods.price}}</view>
     </view>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     <view>
       <view class="collection" bindtap="collect">
         <image src="/images/like.png" wx:if="{{!isGoodsFavorite}}"></image>
         <image src="/images/like-on.png" wx:if="{{isGoodsFavorite}}"></image>
       </view>
     </view>
+<<<<<<< Updated upstream
   </view>
 
   <view class="goods-info">
@@ -29,6 +34,9 @@
       <label class="weui-flex__item nickname">{{goods.member.nickname}}</label>
       <image class="phone" src="/images/phone.png" bindtap="telPhone"></image>
     </view>
+=======
+    
+>>>>>>> Stashed changes
   </view>
 
   <view class="goods-info">

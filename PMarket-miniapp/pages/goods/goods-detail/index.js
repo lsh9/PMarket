@@ -21,7 +21,7 @@ Page({
       id: options.goodsId
     })
     this.getGoods(options.goodsId);
-//    this.getCollect(options.goodsId)
+    this.getCollect(options.goodsId)
 
   },
 
@@ -41,7 +41,7 @@ Page({
       }
     })
   },
-  /*
+
     //收藏
   collect(e) {
     if (!wx.getStorageSync('token')) {
@@ -51,7 +51,7 @@ Page({
     var goodsId = this.data.goods.id;
     var action = this.data.isGoodsFavorite ? 'uncollect' : 'save';
     wx.request({
-      url: app.globalData.domain + '/api/collect/' + action,
+      url: app.globalData.domain + '/goods/collect/' + action,  //not yet
       data: {
         goodsId: goodsId
       },
@@ -88,7 +88,6 @@ Page({
       }
     })
   },
-*/
 
 
   /**
