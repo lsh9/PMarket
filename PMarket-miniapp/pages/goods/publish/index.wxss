@@ -13,7 +13,9 @@
 
 .des-input{
   overflow-wrap: break-word;
-  height: 240rpx;
-  width: 560rpx;
+  height: 300rpx;
+  width: 500rpx;
   display: inline-block;
+  text-align: justify;
+  line-height: 30rpx;
 }

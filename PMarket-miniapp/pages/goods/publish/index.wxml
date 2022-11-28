@@ -40,7 +40,7 @@
           <view class="weui-label">商品价格</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="price" class="weui-input" type='number' placeholder="请输入商品价格" />
+          <input name="price" class="weui-input" type='text' placeholder="请输入商品价格" />
         </view>
       </view>
 

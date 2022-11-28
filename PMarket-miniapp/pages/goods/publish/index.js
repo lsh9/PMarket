@@ -153,14 +153,27 @@ Page({
             return;
         }
 
-        var price = e.detail.value.price;//获取联系方式
-        if (price == '') {
-            wx.showToast({
-                title: '请填写价格',
-                icon: 'none'
-            })
-            return;
+      var price = e.detail.value.price;//获取联系方式
+      for (let i = 0; i < price.length; ++i) {//正则判断是否合法
+        var textValue = (/^[0-9_]$/.test(price.charAt(i)));
+        if (!textValue) {
+          price = 'INVALID';
         }
+      }
+      if (price == 'INVALID') {
+        wx.showToast({
+          title: '目前只支持正整数价格哦',
+          icon: 'none'
+        })
+        return;
+      }
+      if (price == '') {
+        wx.showToast({
+          title: '请填写价格',
+          icon: 'none'
+        })
+        return;
+      }
 
         var contact = e.detail.value.contact;//获取商品价格
         if (contact == '') {
