@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    userInfo: null,
     autoplay: true,
     interval: 3000,
     duration: 1000,
@@ -16,26 +17,25 @@ Page({
     type: 1
   },
 
-  onLoad: function() {
+  onLoad: function () {
     this.getLikesGoods();
   },
 
-  onShow: function(){
-  },
+  onShow: function () {},
 
 
-  
-  getLikesGoods: function() {
+
+  getLikesGoods: function () {
     var that = this;
     wx.request({
       url: app.globalData.domain + '/goods/getLikesGoods',
-      method:"GET",
+      method: "GET",
       data: {
-        id:"04f8dca61feaa22a67ba1770595ec154",
+        id:app.globalData.userId,
         beginNo: that.data.goodsNum,
         number: that.data.pageSize
       },
-      success: function(res) {
+      success: function (res) {
         if (that.data.page == 1) { //判断是否第一页
           that.setData({
             goodsList: []
@@ -55,7 +55,7 @@ Page({
           goodsList: goods,
           isLoad: false
         });
-        var noNow = res.data[res.data.length-1].goodsId; //设置目前得到的最小商品号
+        var noNow = res.data[res.data.length - 1].goodsId; //设置目前得到的最小商品号
         that.setData({
           goodsNum: noNow
         })
@@ -78,27 +78,27 @@ Page({
   },
 
   //下拉加载
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.setData({
       page: 1,
       goodsNum: -1
     });
     wx.showNavigationBarLoading()
     this.getGoods();
-    setTimeout(function() {
+    setTimeout(function () {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1000);
   },
 
   //分享
-  onShareAppMessage: function() {
-  
+  onShareAppMessage: function () {
+
   },
-  
+
   /**
-  * 页面上拉触底事件的处理函数
-  */
+   * 页面上拉触底事件的处理函数
+   */
   onReachBottom: function () {
     this.loadMore();
   }
