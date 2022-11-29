@@ -27,7 +27,7 @@ Page({
   //跳转查询
   showInput: function () {
     wx.navigateTo({
-      url: '/pages/goods/goods-list/index',
+      url: '/pages/index/search/index',
     })
   },
 
@@ -69,7 +69,7 @@ Page({
         });
         var noNow = res.data[res.data.length-1].goodsId; //设置目前得到的最小商品号
         that.setData({
-          goodsNum: noNow
+          goodsNum: noNow-1
         })
       }
     })

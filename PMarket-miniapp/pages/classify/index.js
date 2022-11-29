@@ -64,9 +64,16 @@ Page({
         number: that.data.pageSize
       },
       success: function (res) {
+        if (res.data.length == 0) {
+          that.setData({
+            goodsList: [],
+            isLoad: true
+          });
+          return;
+        }
         that.setData({
           goodsList: res.data,
-          goodsNum: res.data[res.data.length-1].goodsId
+          goodsNum: res.data[res.data.length-1].goodsId - 1
         });
       }
     })
