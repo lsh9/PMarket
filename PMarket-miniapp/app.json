@@ -12,7 +12,8 @@
     "pages/goods/publish/index",
     "pages/goods/publish-mine/index",
     "pages/goods/buy/index",
-    "pages/goods/buy-mine/index"
+    "pages/goods/buy-mine/index",
+    "pages/index/search/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

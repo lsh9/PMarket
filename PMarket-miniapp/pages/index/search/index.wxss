@@ -1,0 +1,45 @@
+/* pages/index/search/index.wxss */
+.weui-grids{
+  border: none;
+}
+
+.weui-grid{
+  border: none;
+}
+
+.goods-container{
+  padding: 5rpx;
+}
+
+.weui-grid.goods{
+  width: 360rpx;
+  background: #FFFFFF;
+  margin: 5rpx;
+  padding: 0rpx;
+}
+
+.weui-grid__icon.goods{
+  width: 360rpx;
+  height: 360rpx;
+}
+
+.weui-grid__label.goods{
+  text-align: left;
+  padding-left: 5rpx;
+}
+
+.weui-grids .price{
+  text-align: left;
+  font-size: 26rpx;
+  color: #e64340;
+  padding-left: 5rpx;
+}
+
+.goods .user{
+  padding: 5rpx;
+}
+
+.nickname{
+  font-size: 24rpx;
+  margin-left: 6rpx;
+}
