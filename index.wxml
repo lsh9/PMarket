@@ -1,0 +1,38 @@
+<!--pages/goods/goods-like/index.wxml-->
+<view class="container" style="width: 750rpx; height: 483rpx; display: flex; box-sizing: border-box">
+
+
+
+<view class="weui-flex">
+
+<view class="category-container" hidden="true">
+  <view class="weui-grids">
+    <block wx:for="{{categoryList}}" wx:key="index">
+      <navigator url="../goods/goods-list/index?categoryId={{item.id}}" class="weui-grid category">
+        <image class="weui-grid__icon" src="{{item.picUrl}}" />
+        <view class="weui-grid__label label">{{item.categoryName}}</view>
+      </navigator>
+    </block>
+  </view>
+</view>
+
+<view class="goods-container" style="width: 742rpx; height: 492rpx; display: block; box-sizing: border-box">
+  <view class="weui-flex types" hidden="true">
+    <view class="type {{type == 1 ? 'active': ''}}" bindtap="tabType" data-type="1">出售</view>
+    <view class="type {{type == 2 ? 'active': ''}}" bindtap="tabType" data-type="2">求购</view>
+  </view>
+  
+  <view class="weui-grids">
+    <block wx:for="{{goodsList}}" wx:key="index">
+      <navigator url="../goods/goods-detail/index?goodsId={{item.goodsId}}" class="weui-grid goods">
+        <image class="weui-grid__icon goods" src="{{item.pictureUrl}}" />
+        <view class="weui-grid__label goods goods-name">{{item.name}}</view>
+        <view class="weui-grid__label goods price">¥ {{item.price}}</view>
+      </navigator>
+    </block>
+  </view>
+</view>
+
+</view>
+
+</view>
