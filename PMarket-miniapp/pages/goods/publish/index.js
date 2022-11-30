@@ -268,10 +268,8 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          var user = that.data.userInfo;
-          user.avatarUrl = data;
           that.setData({
-            userInfo:user
+            imageurl:data
           })
           console.log("上传图片完成")
           resolve('1')
