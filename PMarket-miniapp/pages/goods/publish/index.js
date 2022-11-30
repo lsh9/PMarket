@@ -149,7 +149,7 @@ Page({
           return;
         }
 
-        if(that.data.tmpImageUrl==null){
+        if(that.data.tmpimageurl==null){
           wx.showToast({
             title: '请上传商品图片',
             icon: 'none'
