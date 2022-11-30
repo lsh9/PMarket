@@ -99,6 +99,14 @@ Page({
   },
 
   collect: function () {
+    if(app.globalData.userId==null){
+      wx.showModal({
+        title: '提示',
+        content: "未登录不能收藏商品哦~",
+        showCancel: false
+      })
+    }
+    else{
     wx.request({
       url: app.globalData.domain + '/goods/addLikesGoods',
       method:'POST',
@@ -115,16 +123,23 @@ Page({
           showCancel: false
         })
       }
-      else{
+      else if(res.data.code==1){
         wx.showModal({
           title: '提示',
           content: "收藏失败",
           showCancel: false
         })
       }
+      else if(res.data.code==2){
+        wx.showModal({
+          title: '提示',
+          content: "取消收藏成功",
+          showCancel: false
+        })
+      }
       }
     })
-    
+    }
   },
     /*
     wx.request({
