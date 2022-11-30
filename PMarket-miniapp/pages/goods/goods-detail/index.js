@@ -11,7 +11,6 @@ Page({
     duration: 1000,
     goods: {},
     userInfo: null
-//    isGoodsFavorite: false
 
   }, 
 
@@ -92,7 +91,7 @@ Page({
       method:'POST',
       data:{
         goodsId:this.data.id,
-        userInfo:this.data.userInfo.id
+        id:this.data.userInfo.id
       },
       success: function (res) {
       console.log(res.data);
