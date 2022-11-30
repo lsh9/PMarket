@@ -58,7 +58,7 @@
           <view class="weui-label">商品描述</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea value="{{description}}" placeholder="请输入商品描述" class="des-input" maxlength="500" auto-height="true" bindblur="inputdescription"></textarea>
+          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="500" bindblur="inputdescription"></textarea>
         </view>
       </view>
 

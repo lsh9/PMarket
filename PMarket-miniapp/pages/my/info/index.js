@@ -25,7 +25,7 @@ Page({
         that.setData({
           userInfo: res.data
         });
-        console.log(that.data.userInfo);
+        console.log("获取用户信息",that.data.userInfo);
       }
     })}
   },

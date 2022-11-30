@@ -115,7 +115,7 @@ Page({
             sourceType: ['album', 'camera'],
             success(res) {
                 that.setData({ tmpimageurl: res.tempFiles[0].tempFilePath });
-                console.log(that.data.tmpimageurl);
+                console.log("生成临时图片",that.data.tmpimageurl);
                 that.setData({ buttonhidden: true });
                 that.setData({ deletehidden: false });
                 that.setData({ imghidden: false })
@@ -131,7 +131,7 @@ Page({
     },
 
     inputdescription: function (e) {
-        console.log(e.detail.value);
+        console.log("商品描述，用户输入的内容",e.detail.value);
         var that = this;
         that.setData({ description: e.detail.value });
     },
@@ -237,13 +237,13 @@ Page({
             userId: app.globalData.userId,//用户ID
             pictureUrl: that.data.imageurl,//图片的URL
         };
-        console.log(goods);
+        console.log("发布商品，传给后端的商品对象内容",goods);
         wx.request({
             url: app.globalData.domain + '/goods/publish',
             method: 'POST',
             data: goods,
             success: (res) => {
-                console.log(res.data);
+                console.log("发布商品，后端返回的内容",res.data);
                 wx.showModal({
                     title: '提示',
                     content: "发布成功",

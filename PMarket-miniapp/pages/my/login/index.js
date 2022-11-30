@@ -16,7 +16,7 @@ Page({
   //授权登录
   wxgetuserInfo: function (r) {
     wx.getUserProfile({
-      desc: '用于完善会员资料', 
+      desc: '用于完善会员资料',
       success: (resUser) => {
         app.login(resUser.userInfo, function(res){
           if(res == 0){
