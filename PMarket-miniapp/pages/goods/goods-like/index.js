@@ -4,17 +4,11 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: null,
-    autoplay: true,
-    interval: 3000,
-    duration: 1000,
-    bannerList: [],
     goodsList: [],
     isLoad: false,
     page: 1,
     pageSize: 4,
     goodsNum: -1,
-    type: 1
   },
 
   onLoad: function () {
@@ -31,7 +25,7 @@ Page({
       url: app.globalData.domain + '/goods/getLikesGoods',
       method: "GET",
       data: {
-        id:app.globalData.userId,
+        id: app.globalData.userId,
         beginNo: that.data.goodsNum,
         number: that.data.pageSize
       },
@@ -73,7 +67,7 @@ Page({
       this.setData({
         page: that.data.page + 1
       });
-      this.getGoods();
+      this.getLikesGoods();
     }
   },
 
@@ -84,7 +78,7 @@ Page({
       goodsNum: -1
     });
     wx.showNavigationBarLoading()
-    this.getGoods();
+    this.getLikesGoods();
     setTimeout(function () {
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
