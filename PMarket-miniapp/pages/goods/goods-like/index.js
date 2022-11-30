@@ -49,9 +49,8 @@ Page({
           goodsList: goods,
           isLoad: false
         });
-        var noNow = res.data[res.data.length - 1].goodsId; //设置目前得到的最小商品号
         that.setData({
-          goodsNum: noNow
+          goodsNum: res.data[res.data.length-1].goodsId - 1
         })
       }
     })
