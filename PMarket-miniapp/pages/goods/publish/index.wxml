@@ -18,7 +18,7 @@
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="name" class="weui-input" placeholder="请输入商品名称" />
+          <input name="name" class="weui-input" maxlength="50" placeholder="请输入商品名称" />
         </view>
       </view>
 
@@ -27,9 +27,12 @@
         <view class="weui-cell__hd">
           <view class="weui-label">分类</view>
         </view>
-        <view class="weui-cell__bd">
-          <input name="category" class="weui-input" placeholder="先填写商品类型" />
-        </view>
+        <button plain="true" size="mini" bindtap="changehidden">{{string}}</button>
+        <button hidden="{{hidden}}" bindtap="choosecategory0"> 书籍 </button>
+        <button hidden="{{hidden}}" bindtap="choosecategory1"> 日用 </button>
+        <button hidden="{{hidden}}" bindtap="choosecategory2"> 数码 </button>
+
+
       </view>
 
       <view class="weui-cell weui-cell_input">
@@ -37,7 +40,7 @@
           <view class="weui-label">商品价格</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="price" class="weui-input" type='number' placeholder="请输入商品价格" />
+          <input name="price" class="weui-input" type='text' placeholder="请输入商品价格" />
         </view>
       </view>
 
@@ -55,13 +58,17 @@
           <view class="weui-label">商品描述</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="description" class="weui-input" type='text' placeholder="请输入商品描述" />
+          <textarea value="{{description}}" placeholder="请输入商品描述" class="des-input" maxlength="500" auto-height="true" bindblur="inputdescription"></textarea>
         </view>
       </view>
 
       
 
-      <button bindtap="uploadimage">上传图片</button>
+      <button bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
+      <button bindtap="deleteimg" hidden="{{deletehidden}}">删除图片</button>
+      <image src="{{tmpimageurl}}" hidden="{{imghidden}}"></image>
+
+      
 
       
     </view>

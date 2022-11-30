@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: null,
+    tmpImageUrl: null
   },
 
   /**
@@ -46,12 +47,12 @@ Page({
         that.setData({
           userInfo: res.data
         });
-        console.log(that.data.userInfo);
+        console.log("获取用户信息",that.data.userInfo);
       }
     })}
   },
 
-  bindSave: function (e) {
+  bindSave: async function (e) {
     var that = this;
     var nickName = e.detail.value.nickName;
     var contact = e.detail.value.contact;
@@ -71,16 +72,22 @@ Page({
       })
       return
     }
+    console.log("tmpImageUrl",that.data.tmpImageUrl);
+    if(that.data.tmpImageUrl!=null){
+      await that.upAvatar(that);
+    }
+
     var data = e.detail.value;
     data.id = that.data.userInfo.id;
     data.avatarUrl=that.data.userInfo.avatarUrl;
-    console.log(data);
+    console.log("save中传送的data",data);
     wx.request({
       url: app.globalData.domain + '/my/edit',
       method: 'POST',
       data: data,
       success: function (res) {
-        console.log(res.data);
+        console.log("save中收到的data",res.data);
+        console.log("保存完成")
         if (res.data.code != 0) {
           // 错误 
           wx.hideLoading();
@@ -104,48 +111,57 @@ Page({
       mediaType: 'image',
       sourceType: ['album', 'camera'],
       success: function(res) {
-        console.log(res.tempFiles[0].tempFilePath);
-        var lastImage=that.data.userInfo.avatarUrl;
-        wx.uploadFile({
-          url: app.globalData.domain + '/image/upload/avatar',
-          filePath:res.tempFiles[0].tempFilePath,
-          name: 'image',
-          formData: {
-            'last': lastImage
-          },
-          success: function(res) {
-            console.log(res.data);
-            const data = res.data
-            if (res.statusCode==200) {
-              wx.showToast({
-                title: '上传成功',
-                icon: 'success',
-                duration: 2000
-              })
-              var user = that.data.userInfo;
-              user.avatarUrl = data;
-              that.setData({
-                userInfo:user
-              })
-            }
-            else{
-              wx.showToast({
-                title: '上传失败',
-                duration: 2000
-              })
-            }
-          },
-          fail: function(res) {
-            wx.showToast({
-              title: '上传失败',
-              duration: 2000
-            })
-          }
+        console.log("选取图片，生成临时文件",res.tempFiles[0].tempFilePath);
+        that.setData({tmpImageUrl:res.tempFiles[0].tempFilePath});
+        var user = that.data.userInfo;
+        user.avatarUrl = res.tempFiles[0].tempFilePath;
+        that.setData({
+          userInfo:user
         })
       }
     })
   },
-  
+
+
+  async upAvatar(that) {
+    return new Promise((resolve, reject) => {
+  wx.uploadFile({
+    url: app.globalData.domain + '/image/upload/avatar',
+    filePath:that.data.tmpImageUrl,
+    name: 'image',
+    success: function(res) {
+      console.log("上传图片中收到的data",res.data);
+      const data = res.data
+      if (res.statusCode==200) {
+        wx.showToast({
+          title: '上传头像成功',
+          icon: 'success',
+          duration: 2000
+        })
+        var user = that.data.userInfo;
+        user.avatarUrl = data;
+        that.setData({
+          userInfo:user
+        })
+        console.log("上传图片完成")
+        resolve('1')
+      }
+      else{
+        wx.showToast({
+          title: '上传失败',
+          duration: 2000
+        })
+      }
+    },
+    fail: function(res) {
+      wx.showToast({
+        title: '上传失败',
+        duration: 2000
+      })
+    },
+  })
+    })
+  },
  
   /**
    * 生命周期函数--监听页面隐藏
