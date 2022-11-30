@@ -10,8 +10,8 @@ Page({
     interval: 3000,
     duration: 1000,
     goods: {},
-    userInfo: null
-
+    userInfo: null,
+    goods_details_userinfo:{}
   }, 
 
   /**
@@ -28,6 +28,7 @@ Page({
     })
     this.getGoods(options.goodsId);
     this.getuserInfo();
+    this.getdetail_userinfo(options.goodsId);
 //    this.getCollect();
 //    this.getCollect(options.goodsId)
   },
@@ -46,6 +47,25 @@ Page({
         });
       }
     })
+  },
+
+  getdetail_userinfo:function(goodsId){
+    var that = this;
+    wx.request({
+      url: app.globalData.domain + '/goods/getGoodsId',
+      method:"GET",
+      data: {
+        goodsId:goodsId
+      },
+      success: function (res) {
+        that.setData({
+          goods_details_userinfo:res.data.User
+        });
+        console.log("goods_detail");
+        console.log(res.data.User);
+      }
+    })
+
   },
   
 //查询用户信息
@@ -70,6 +90,9 @@ Page({
   
   //删除
   deleteGoods: function () {
+    var that = this;
+    
+    if(this.data.goods_details_userinfo.id==this.data.userInfo.id){
     wx.request({
       url: app.globalData.domain + '/goods/delete',
       method:'POST',
@@ -81,7 +104,7 @@ Page({
         wx.navigateBack({})
       }
     })
-    
+  }
   },
 
   

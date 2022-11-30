@@ -23,10 +23,16 @@
     <view class='common-text-left'>发布时间</view>
       <view class="divLine"></view>
     <text>{{goods.releaseTime == null ? '' : goods.releaseTime}}</text>
+    <view class='common-text-left'>发布用户</view>
+      <view class="divLine"></view>
+    <text>{{goods_details_userinfo.nickName == null ? '' : goods_details_userinfo.nickName}}</text>
   </view>
   
   <button class="collect" bindtap="collect">collect</button>
   <button class="remove" bindtap="deleteGoods">delete</button>
-  
 
+  <view class="avatar">
+        <image src="{{goods_details_userinfo.avatarUrl}}" class="image" />
+  </view>
+  
 </view>
