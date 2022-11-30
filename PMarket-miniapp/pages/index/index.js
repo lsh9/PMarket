@@ -34,6 +34,7 @@ Page({
   //查询商品
   getGoods: function() {
     var that = this;
+    console.log("get goods")
     wx.request({
       url: app.globalData.domain + '/index/getGoods',
       method:"GET",
@@ -54,12 +55,14 @@ Page({
           return;
         } */
         if (res.data.length == 0) {
+          console.log("no goods")
           that.setData({
             isLoad: true
           });
           return;
         }
         var goods = that.data.goodsList;
+        console.log("get goods")
         for (var i = 0; i < res.data.length; i++) {
           goods.push(res.data[i]);
         }
