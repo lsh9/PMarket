@@ -10,9 +10,15 @@ Page({
     interval: 3000,
     duration: 1000,
     goods: {},
+    userInfo: null
 //    isGoodsFavorite: false
 
-  },
+  }, 
+
+  /**
+   * 查询用户信息
+   */
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,11 +28,11 @@ Page({
       id: options.goodsId
     })
     this.getGoods(options.goodsId);
+//    this.getuserInfo();
+//    this.getCollect();
 //    this.getCollect(options.goodsId)
-
   },
 
-  //查询商品详情
   getGoods: function (goodsId) {
     var that = this;
     wx.request({
@@ -43,6 +49,43 @@ Page({
     })
   },
   /*
+//查询用户信息
+  getuserInfo: function () {
+    var that = this;
+    if(app.globalData.userId!=null)
+    {wx.request({
+      url: app.globalData.domain + '/my/info',
+      method:"GET",
+      data: {
+        id:app.globalData.userId
+      },
+      success: function (res) {
+        that.setData({
+          userInfo: res.data
+        });
+        console.log(that.data.userInfo);
+      }
+    })}
+  },
+*/
+  
+  //删除
+  deleteGoods: function () {
+    wx.request({
+      url: app.globalData.domain + '/goods/delete',
+      method:'POST',
+      data:{
+        goodsId:this.data.id
+      },
+      success: function (res) {
+      console.log(res.data);
+        wx.navigateBack({})
+      }
+    })
+    
+  },
+
+  
     //收藏
   collect(e) {
     if (!wx.getStorageSync('token')) {
@@ -70,10 +113,25 @@ Page({
   },
 
   //是否收藏
-  getCollect(goodsId) {
+  getCollect() {
     var that = this;
+    if(app.globalData.userId!=null)
+    {wx.request({
+      url: app.globalData.domain + '/my/info',
+      method:"GET",
+      data: {
+        id:app.globalData.userId
+      },
+      success: function (res) {
+        that.setData({
+          userInfo: res.data
+        });
+        console.log(that.data.userInfo);
+      }
+    })}
+    /*
     wx.request({
-      url: app.globalData.domain + '/api/collect/isCollect',
+      url: app.globalData.domain + '/goods/collected',
       data: {
         goodsId: goodsId
       },
@@ -87,9 +145,9 @@ Page({
           })
         }
       }
-    })
+    })*/
   },
-*/
+
 
 
   /**

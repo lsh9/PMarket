@@ -11,12 +11,22 @@
       <view class="price">￥{{goods.price}}</view>
     </view>
   </view>
-  
+
+
   <view class="goods-info">
-    <view class='title'>商品描述</view>
+    <view class='common-text-left'>商品描述</view>
+      <view class="divLine"></view>
     <text>{{goods.description == null ? '' : goods.description}}</text>
-    <view class='title'>联系方式</view>
+    <view class='common-text-left'>联系方式</view>
+      <view class="divLine"></view>
     <text>{{goods.contact == null ? '' : goods.contact}}</text>
+    <view class='common-text-left'>发布时间</view>
+      <view class="divLine"></view>
+    <text>{{goods.releaseTime == null ? '' : goods.releaseTime}}</text>
   </view>
+  
+  <button class="collect" bindtap="collect">collect</button>
+  <button class="remove" bindtap="deleteGoods">delete</button>
+  
 
 </view>
