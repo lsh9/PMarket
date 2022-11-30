@@ -22,13 +22,13 @@ App({
             gender: userInfo.gender
           },
           success: (res) => {
-            console.log(res.data);
-            console.log(userInfo);
-            console.log(that.globalData.userId);
+            console.log("wx提供的getuserInfo返回的内容",userInfo);
+            console.log("全局变量，已登录的用户的id",that.globalData.userId);
+            console.log("登录时，后端返回的内容",res.data);
             if (res.data.code==0) {
               wx.hideLoading();
               that.globalData.userId=res.data.id;
-              console.log(that.globalData.userId);
+              console.log("全局变量，已登录的用户的id",that.globalData.userId);
               callback(0);
             } else {
               // 登录错误 
