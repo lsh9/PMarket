@@ -137,7 +137,7 @@ Page({
     },
 
 
-    saveGoods: function (e) {
+    saveGoods: async function (e) {
         var that = this;
         var name = e.detail.value.name;//获取商品名称
 
