@@ -1,7 +1,6 @@
 // pages/goods/goods-detail/index.js
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -10,14 +9,8 @@ Page({
     interval: 3000,
     duration: 1000,
     goods: {},
-    userInfo: null,
     goods_details_userinfo:{}
   }, 
-
-  /**
-   * 查询用户信息
-   */
-  
 
   /**
    * 生命周期函数--监听页面加载
@@ -27,7 +20,6 @@ Page({
       id: options.goodsId
     })
     this.getGoods(options.goodsId);
-    this.getuserInfo();
     this.getdetail_userinfo(options.goodsId);
 //    this.getCollect();
 //    this.getCollect(options.goodsId)
@@ -68,31 +60,17 @@ Page({
 
   },
   
-//查询用户信息
-  getuserInfo: function () {
-    var that = this;
-    if(app.globalData.userId!=null)
-    {wx.request({
-      url: app.globalData.domain + '/my/info',
-      method:"GET",
-      data: {
-        id:app.globalData.userId
-      },
-      success: function (res) {
-        that.setData({
-          userInfo: res.data
-        });
-        console.log(that.data.userInfo);
-      }
-    })}
-  },
-
-  
   //删除
   deleteGoods: function () {
     var that = this;
-    
-    if(this.data.goods_details_userinfo.id==this.data.userInfo.id){
+    if(that.data.goods_details_userinfo.id!=app.globalData.userId){
+      wx.showModal({
+        title: '提示',
+        content: "不能删除别人发布的商品哦~",
+        showCancel: false
+      })
+    }
+    else{
     wx.request({
       url: app.globalData.domain + '/goods/delete',
       method:'POST',
@@ -101,23 +79,49 @@ Page({
       },
       success: function (res) {
       console.log(res.data);
-        wx.navigateBack({})
+      if(res.data.code==0){
+        wx.showModal({
+          title: '提示',
+          content: "删除成功",
+          showCancel: false
+        })
+      }
+      else{
+        wx.showModal({
+          title: '提示',
+          content: "删除失败",
+          showCancel: false
+        })
+      }
       }
     })
   }
   },
 
-  
   collect: function () {
     wx.request({
       url: app.globalData.domain + '/goods/addLikesGoods',
       method:'POST',
       data:{
         goodsId:this.data.id,
-        id:this.data.userInfo.id
+        id:app.globalData.userId
       },
       success: function (res) {
       console.log(res.data);
+      if(res.data.code==0){
+        wx.showModal({
+          title: '提示',
+          content: "收藏成功",
+          showCancel: false
+        })
+      }
+      else{
+        wx.showModal({
+          title: '提示',
+          content: "收藏失败",
+          showCancel: false
+        })
+      }
       }
     })
     

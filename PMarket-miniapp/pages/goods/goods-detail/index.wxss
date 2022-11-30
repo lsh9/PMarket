@@ -1,5 +1,12 @@
 /* pages/goods/goods-detail/index.wxss */
 
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
 .container {
   padding-bottom: 100rpx;
 }
@@ -46,11 +53,9 @@ height: 200rpx;
   margin-bottom: 20rpx;
 }
 
-  
-
 .remove{
   width:80%;
-  margin-top:130rpx;
+  margin-top:50rpx;
   background-color: rgb(106, 0, 95);
   color: white;
   border-radius: 98rpx;
@@ -62,7 +67,7 @@ height: 200rpx;
 
 .collect{
   width:80%;
-  margin-top:210rpx;
+  margin-top:40rpx;
   background-color: rgb(214, 167, 12);
   color: white;
   border-radius: 98rpx;
