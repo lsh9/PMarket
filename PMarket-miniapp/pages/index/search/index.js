@@ -111,6 +111,7 @@ Page({
       this.setData({
         page: that.data.page + 1
       });
+      console.log("get more search result")
       this.getGoodsList();
     }
   },
@@ -132,6 +133,7 @@ Page({
   //查询商品
   getGoodsList: function() {
     var that = this;
+    console.log("search")
     that.setData({
       isLoad: true
     });
@@ -149,12 +151,14 @@ Page({
           });
         }
         if (res.data.length == 0) {
+          console.log("no search result")
           that.setData({
             isLoad: true
           });
           return;
         }
         var goods = that.data;
+        console.log("get result")
         for (var i = 0; i < res.data.length; i++) {
           goods.goodsList.push(res.data[i]);
         }

@@ -111,6 +111,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("refresh")
     this.setData({
       page: 1,
       goodsNum: -1
@@ -130,6 +131,7 @@ Page({
       var isLoad = this.data.isLoad;
       console.log(isLoad)
       if (!isLoad) {
+        console.log("get more goods")
         this.setData({
           page: that.data.page + 1
         });
