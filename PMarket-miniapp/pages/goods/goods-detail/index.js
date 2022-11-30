@@ -28,7 +28,7 @@ Page({
       id: options.goodsId
     })
     this.getGoods(options.goodsId);
-//    this.getuserInfo();
+    this.getuserInfo();
 //    this.getCollect();
 //    this.getCollect(options.goodsId)
   },
@@ -48,7 +48,7 @@ Page({
       }
     })
   },
-  /*
+  
 //查询用户信息
   getuserInfo: function () {
     var that = this;
@@ -67,7 +67,7 @@ Page({
       }
     })}
   },
-*/
+
   
   //删除
   deleteGoods: function () {
@@ -86,49 +86,20 @@ Page({
   },
 
   
-    //收藏
-  collect(e) {
-    if (!wx.getStorageSync('token')) {
-      return;
-    }
-    var that = this;
-    var goodsId = this.data.goods.id;
-    var action = this.data.isGoodsFavorite ? 'uncollect' : 'save';
+  collect: function () {
     wx.request({
-      url: app.globalData.domain + '/api/collect/' + action,
-      data: {
-        goodsId: goodsId
-      },
-      header: {
-        token: wx.getStorageSync('token')
+      url: app.globalData.domain + '/goods/addLikesGoods',
+      method:'POST',
+      data:{
+        goodsId:this.data.id,
+        userInfo:this.data.userInfo.id
       },
       success: function (res) {
-        if (res.data.code == 0) {
-          that.setData({
-            isGoodsFavorite: !that.data.isGoodsFavorite
-          })
-        }
+      console.log(res.data);
       }
     })
+    
   },
-
-  //是否收藏
-  getCollect() {
-    var that = this;
-    if(app.globalData.userId!=null)
-    {wx.request({
-      url: app.globalData.domain + '/my/info',
-      method:"GET",
-      data: {
-        id:app.globalData.userId
-      },
-      success: function (res) {
-        that.setData({
-          userInfo: res.data
-        });
-        console.log(that.data.userInfo);
-      }
-    })}
     /*
     wx.request({
       url: app.globalData.domain + '/goods/collected',
@@ -146,7 +117,7 @@ Page({
         }
       }
     })*/
-  },
+  
 
 
 
