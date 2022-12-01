@@ -7,6 +7,12 @@
   border-radius: 50%;
 }
 
+.img-box {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 .container {
   padding-bottom: 100rpx;
 }

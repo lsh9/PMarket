@@ -12,7 +12,9 @@ Page({
     categoryList: [],
     page: 1,
     goodsNum: -1,
-    pageSize: 10
+    pageSize: 10,
+    isLoad: false,
+    goodsList: []
   },
 
   /**
@@ -26,10 +28,11 @@ Page({
   //点击分类
   tabClick: function (e) {
     this.setData({
-      activeIndex: e.currentTarget.id,
+      activeIndex: e.currentTarget.dataset.id,
       page: 1,
       goodsNum: -1
     });
+    console.log(this.data.activeIndex)
     this.getGoodsList(e.currentTarget.dataset.id);
   },
 
@@ -55,6 +58,7 @@ Page({
   //查询商品
   getGoodsList: function (categoryId) {
     var that = this;
+    console.log(categoryId);
     wx.request({
       url: app.globalData.domain + '/classify/getGoodsList',
       method:"GET",
@@ -64,17 +68,31 @@ Page({
         number: that.data.pageSize
       },
       success: function (res) {
-        if (res.data.length == 0) {
+        if (that.data.page == 1) { //判断是否第一页
           that.setData({
-            goodsList: [],
+            goodsList: []
+          });
+        }
+        if (res.data.length == 0) {
+          console.log("no goods")
+          that.setData({
             isLoad: true
           });
           return;
         }
+        var goods = that.data.goodsList;
+        console.log("get goods")
+        for (var i = 0; i < res.data.length; i++) {
+          goods.push(res.data[i]);
+        }
         that.setData({
-          goodsList: res.data,
-          goodsNum: res.data[res.data.length-1].goodsId - 1
+          goodsList: goods,
+          isLoad: false
         });
+        var noNow = res.data[res.data.length-1].goodsId; //设置目前得到的最小商品号
+        that.setData({
+          goodsNum: noNow-1
+        })
       }
     })
   },
@@ -132,10 +150,11 @@ Page({
       console.log(isLoad)
       if (!isLoad) {
         console.log("get more goods")
-        this.setData({
+        console.log(that.data.activeIndex);
+        that.setData({
           page: that.data.page + 1
         });
-        this.getGoodsList(that.activeIndex);
+        that.getGoodsList(that.data.activeIndex);
       }
     },
 

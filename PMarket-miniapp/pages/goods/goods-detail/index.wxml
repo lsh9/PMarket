@@ -2,7 +2,7 @@
 <view class="container">
 
   <view class="img-box">
-        <image src="{{goods.pictureUrl}}" class="image" />
+        <image src="{{goods.pictureUrl}}" class="image" mode="widthFix"/>
   </view>
 
   <view class="weui-flex goods-info" style="align-items: center">

@@ -1,4 +1,11 @@
 /* pages/publish/index.wxss */
+
+.img-box {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 .remove{
 	position: absolute;
 	width: 30rpx;
