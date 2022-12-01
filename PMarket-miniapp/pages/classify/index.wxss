@@ -15,7 +15,8 @@ page{
   display: block;
   width: 200rpx;
   position: static;
-  border: none
+  border: none;
+  background: #FFFFFF;
 }
 
 .category-container{
@@ -38,7 +39,7 @@ page{
 
 .weui-bar__item_on{
   border-left: 6rpx solid #e64340;
-  background: #FFFFFF
+  background: #c5bfbf;
 }
 
 .weui-grid__icon{

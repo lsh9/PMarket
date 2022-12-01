@@ -20,7 +20,7 @@
   </view>
 
   <view class="weui-btn-area" wx:if="{{userInfo.id}}">
-    <button type="primary" class="weui-btn" bindtap="logout">退出</button>
+    <button class="weui-btn" bindtap="logout">退出</button>
   </view>
 
   <view class="weui-footer weui-footer_fixed-bottom">

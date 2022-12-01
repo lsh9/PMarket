@@ -13,7 +13,7 @@ scroll-view{
 .userinfo {
   display: flex;
   padding: 40rpx;
-  background: #00bfe0;
+  background: #e64340;
   align-items: center;
   vertical-align: middle;
 }
@@ -39,8 +39,8 @@ scroll-view{
 .userinfo-card {
   margin-top: 5rpx;
   font-size: 26rpx;
-  color: #068CA4;
-  background: #B8EAF3;
+  color: #504a4a;
+  background: #e4c9c5;
   border-radius: 20rpx;
   padding: 2rpx 10rpx 2rpx 10rpx;
 }
@@ -98,4 +98,8 @@ scroll-view{
 
 .grid{
   height: 166rpx
+}
+
+.weui-btn{
+  background-color: #d6d2d2;
 }
