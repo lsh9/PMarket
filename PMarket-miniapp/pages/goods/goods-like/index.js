@@ -7,7 +7,7 @@ Page({
     goodsList: [],
     isLoad: false,
     page: 1,
-    pageSize: 4,
+    pageSize: 18,
     goodsNum: -1,
   },
 
@@ -21,6 +21,7 @@ Page({
 
   getLikesGoods: function () {
     var that = this;
+    console.log("get goods")
     wx.request({
       url: app.globalData.domain + '/goods/getLikesGoods',
       method: "GET",

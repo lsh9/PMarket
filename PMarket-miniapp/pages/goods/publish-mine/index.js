@@ -7,7 +7,7 @@ Page({
     goodsList: [],
     isLoad: false,
     page: 1,
-    pageSize: 4,
+    pageSize: 18,
     goodsNum: -1,
   },
 
@@ -21,6 +21,7 @@ Page({
 
   getReleaseGoods: function () {
     var that = this;
+    console.log("get goods")
     wx.request({
       url: app.globalData.domain + '/goods/getReleaseGoods',
       method: "GET",
@@ -51,7 +52,7 @@ Page({
         });
         var noNow = res.data[res.data.length - 1].goodsId; //设置目前得到的最小商品号
         that.setData({
-          goodsNum: noNow
+          goodsNum: noNow-1
         })
       }
     })
