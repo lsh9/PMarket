@@ -12,7 +12,8 @@ Page({
     page: 1,
     pageSize: 10,
     categoryId: "-1",
-    inputVal: ""
+    inputVal: "",
+    Nonow: 1
   },
 
   //点击查询
@@ -141,7 +142,7 @@ Page({
       url: app.globalData.domain + '/index/searchGoods',
       method: "POST",
       data: {
-        limit: that.data.pageSize,
+        limit: that.data.page * that.data.pageSize,
         keywords: that.data.inputVal
       },
       success: function(res) {
@@ -159,12 +160,13 @@ Page({
         }
         var goods = that.data;
         console.log("get result")
-        for (var i = 0; i < res.data.length; i++) {
+        for (var i = that.data.Nonow; i < res.data.length; i++) {
           goods.goodsList.push(res.data[i]);
         }
         that.setData({
           goodsList: goods.goodsList,
-          isLoad: false
+          isLoad: false,
+          Nonow: that.data.Nonow + that.data.pageSize
         });
       }
     })
