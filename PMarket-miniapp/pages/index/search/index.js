@@ -13,7 +13,7 @@ Page({
     pageSize: 10,
     categoryId: "-1",
     inputVal: "",
-    Nonow: 1
+    noNow: 0
   },
 
   //点击查询
@@ -148,7 +148,8 @@ Page({
       success: function(res) {
         if (that.data.page == 1) {
           that.setData({
-            goodsList: []
+            goodsList: [],
+            noNow: 0
           });
         }
         if (res.data.length == 0) {
@@ -160,13 +161,13 @@ Page({
         }
         var goods = that.data;
         console.log("get result")
-        for (var i = that.data.Nonow; i < res.data.length; i++) {
+        for (var i = that.data.noNow; i < res.data.length; i++) {
           goods.goodsList.push(res.data[i]);
         }
         that.setData({
           goodsList: goods.goodsList,
           isLoad: false,
-          Nonow: that.data.Nonow + that.data.pageSize
+          noNow: that.data.noNow + that.data.pageSize
         });
       }
     })
