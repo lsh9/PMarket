@@ -13,7 +13,7 @@ scroll-view{
 .userinfo {
   display: flex;
   padding: 40rpx;
-  background: #e64340;
+  background: #ec4643;
   align-items: center;
   vertical-align: middle;
 }
@@ -45,61 +45,19 @@ scroll-view{
   padding: 2rpx 10rpx 2rpx 10rpx;
 }
 
-
-.notice {
-  font-size: 28rpx;
-  color: #eee;
-}
-
-.grid{
-  margin-bottom: 20rpx;
-}
-
-.grid-item {
-  width: 33.33333333%;
-  float: left;
-  text-align: center;
-  background: #fff;
-  height: 166rpx;
-}
-
-.grid-item image {
-  width: 64rpx;
-  height: 64rpx;
-  margin-top: 26rpx;
-}
-
-.grid-item .grid-name {
-  font-size: 28rpx;
-  color: #00bfe0;
-}
-
-.grid-item .grid-name-ok {
-  font-size: 28rpx;
-  color: #AAAAAA;
-}
-
-.my-item button{
-  border: none;
-  height: 100rpx;
-  line-height: 100rpx;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-}
-
-.my-item button::after{
-  border: none
-}
-
 .list{
   margin-bottom: 20rpx
 }
 
-.grid{
-  height: 166rpx
-}
-
 .weui-btn{
   background-color: #d6d2d2;
+  color:#554343;
+}
+
+.weui-cell__bd{
+  color:#554343;
+}
+
+.container{
+  background-color: #fff;
 }

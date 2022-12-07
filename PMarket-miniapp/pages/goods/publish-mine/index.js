@@ -52,7 +52,7 @@ Page({
         });
         var noNow = res.data[res.data.length - 1].goodsId; //设置目前得到的最小商品号
         that.setData({
-          goodsNum: noNow-1
+          goodsNum: noNow - 1
         })
       }
     })

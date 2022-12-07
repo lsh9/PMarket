@@ -6,21 +6,20 @@
     "pages/my/info/index",
     "pages/my/edit/index",
     "pages/my/login/index",
-    "pages/goods/goods-list/index",
     "pages/goods/goods-detail/index",
     "pages/goods/goods-like/index",
     "pages/goods/publish/index",
     "pages/goods/publish-mine/index",
-    "pages/goods/buy/index",
-    "pages/goods/buy-mine/index",
     "pages/index/search/index"
   ],
+  
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "摆大鱼-PMarket",
     "navigationBarTextStyle":"black"
   },
+
   "tabBar": {
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
@@ -45,12 +44,6 @@
         "iconPath": "images/nav/publish-off.png",
         "selectedIconPath": "images/nav/publish-on.png",
         "text": "发布"
-      },
-      {
-        "pagePath": "pages/goods/buy/index",
-        "iconPath": "images/nav/buy-off.png",
-        "selectedIconPath": "images/nav/buy-on.png",
-        "text": "求购"
       },
       {
         "pagePath": "pages/my/index/index",

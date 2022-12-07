@@ -2,9 +2,6 @@
 const app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: null
   },
@@ -12,29 +9,30 @@ Page({
   /**
    * 查询用户信息
    */
-  getuserInfo: function () {
+  getUserInfo: function () {
     var that = this;
-    if(app.globalData.userId!=null)
-    {wx.request({
-      url: app.globalData.domain + '/my/info',
-      method:"GET",
-      data: {
-        id:app.globalData.userId
-      },
-      success: function (res) {
-        that.setData({
-          userInfo: res.data
-        });
-        console.log("获取用户信息",that.data.userInfo);
-      }
-    })}
+    if(app.globalData.userId!=null){
+      wx.request({
+        url: app.globalData.domain + '/my/info',
+        method:"GET",
+        data: {
+          id:app.globalData.userId
+        },
+        success: function (res) {
+          that.setData({
+            userInfo: res.data
+          });
+          console.log("获取用户信息",that.data.userInfo);
+        }
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getuserInfo();
+    this.getUserInfo();
   },
 
   /**
@@ -48,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getuserInfo();
+    this.getUserInfo();
   },
 
   /**

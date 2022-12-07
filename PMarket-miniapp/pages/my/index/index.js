@@ -6,18 +6,17 @@ Page({
     list: [
       { "name": "我的信息", "url": "/pages/my/info/index" },
       { "name": "我的发售", "url": "/pages/goods/publish-mine/index" },
-      { "name": "我的求购", "url": "/pages/goods/buy-mine/index" },
       { "name": "我的收藏", "url": "/pages/goods/goods-like/index" },
     ],
     userInfo:null
   },
 
   onLoad() {
-    this.getuserInfo();
+    this.getUserInfo();
   },
 
   onShow() {
-    this.getuserInfo();
+    this.getUserInfo();
   },
 
   tabNav: function(e){
@@ -30,22 +29,23 @@ Page({
   /**
    * 查询用户信息
    */
-  getuserInfo: function () {
+  getUserInfo: function () {
     var that = this;
-    if(app.globalData.userId!=null)
-    {wx.request({
-      url: app.globalData.domain + '/my/info',
-      method:"GET",
-      data: {
-        id:app.globalData.userId
-      },
-      success: function (res) {
-        that.setData({
-          userInfo: res.data
-        });
-        console.log("获取用户信息",that.data.userInfo);
-      }
-    })}
+    if(app.globalData.userId!=null){
+      wx.request({
+        url: app.globalData.domain + '/my/info',
+        method:"GET",
+        data: {
+          id:app.globalData.userId
+        },
+        success: function (res) {
+          that.setData({
+            userInfo: res.data
+          });
+          console.log("获取用户信息",that.data.userInfo);
+        }
+      })
+    }
   },
   
   /**

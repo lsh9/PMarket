@@ -11,7 +11,17 @@ page{
 }
 
 .item .label{
-  flex: 1
+  flex: 1;
+  color:#e75959;
+}
+
+.item .value{
+  color:#554343;
+}
+
+.userinfo-nickName
+{
+  color:#554343;
 }
 
 .userinfo{
@@ -41,19 +51,6 @@ page{
   flex: 1
 }
 
-.grid{
-  font-size: 26rpx;
-  color: #888888;
-  padding: 40rpx 0rpx 40rpx 0rpx;
-  text-align: center;
-}
-
-.line{
-  width: 2rpx;
-  background: #eee;
-  height: 100rpx
-}
-
 .grid:last-child{
   border-right: none
 }
@@ -63,5 +60,5 @@ page{
 }
 
 .basic .edit{
-  color: #00BFE0
+  color: #be4b4b
 }

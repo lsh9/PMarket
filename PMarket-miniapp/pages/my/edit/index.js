@@ -2,9 +2,6 @@
 const app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo: null,
     tmpImageUrl: null
@@ -14,14 +11,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getuserInfo()
+    this.getUserInfo()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getuserInfo()
+    this.getUserInfo()
   },
 
   /**
@@ -34,22 +31,23 @@ Page({
   /**
    * 查询用户信息
    */
-  getuserInfo: function () {
+  getUserInfo: function () {
     var that = this;
-    if(app.globalData.userId!=null)
-    {wx.request({
-      url: app.globalData.domain + '/my/info',
-      method:"GET",
-      data: {
-        id:app.globalData.userId
-      },
-      success: function (res) {
-        that.setData({
-          userInfo: res.data
-        });
-        console.log("获取用户信息",that.data.userInfo);
-      }
-    })}
+    if(app.globalData.userId!=null){
+      wx.request({
+        url: app.globalData.domain + '/my/info',
+        method:"GET",
+        data: {
+          id:app.globalData.userId
+        },
+        success: function (res) {
+          that.setData({
+            userInfo: res.data
+          });
+          console.log("获取用户信息",that.data.userInfo);
+        }
+      })
+    }
   },
 
   bindSave: async function (e) {
@@ -109,6 +107,7 @@ Page({
     wx.chooseMedia({
       count: 1,
       mediaType: 'image',
+      sizeType: 'compressed',
       sourceType: ['album', 'camera'],
       success: function(res) {
         console.log("选取图片，生成临时文件",res.tempFiles[0].tempFilePath);
@@ -125,41 +124,41 @@ Page({
 
   async upAvatar(that) {
     return new Promise((resolve, reject) => {
-  wx.uploadFile({
-    url: app.globalData.domain + '/image/upload/avatar',
-    filePath:that.data.tmpImageUrl,
-    name: 'image',
-    success: function(res) {
-      console.log("上传图片中收到的data",res.data);
-      const data = res.data
-      if (res.statusCode==200) {
-        wx.showToast({
-          title: '上传头像成功',
-          icon: 'success',
-          duration: 2000
-        })
-        var user = that.data.userInfo;
-        user.avatarUrl = data;
-        that.setData({
-          userInfo:user
-        })
-        console.log("上传图片完成")
-        resolve('1')
-      }
-      else{
-        wx.showToast({
-          title: '上传失败',
-          duration: 2000
-        })
-      }
-    },
-    fail: function(res) {
-      wx.showToast({
-        title: '上传失败',
-        duration: 2000
+      wx.uploadFile({
+        url: app.globalData.domain + '/image/upload/avatar',
+        filePath:that.data.tmpImageUrl,
+        name: 'image',
+        success: function(res) {
+          console.log("上传图片中收到的data",res.data);
+          const data = res.data
+          if (res.statusCode==200) {
+            wx.showToast({
+              title: '上传头像成功',
+              icon: 'success',
+              duration: 2000
+            })
+            var user = that.data.userInfo;
+            user.avatarUrl = data;
+            that.setData({
+              userInfo:user
+            })
+            console.log("上传图片完成")
+            resolve('1')
+          }
+          else{
+            wx.showToast({
+              title: '上传失败',
+              duration: 2000
+            })
+          }
+        },
+        fail: function(res) {
+          wx.showToast({
+            title: '上传失败',
+            duration: 2000
+          })
+        },
       })
-    },
-  })
     })
   },
  

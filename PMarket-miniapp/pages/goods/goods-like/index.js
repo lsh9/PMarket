@@ -51,7 +51,7 @@ Page({
           isLoad: false
         });
         that.setData({
-          goodsNum: res.data[res.data.length-1].goodsId - 1
+          goodsNum: res.data[res.data.length - 1].goodsId - 1
         })
       }
     })

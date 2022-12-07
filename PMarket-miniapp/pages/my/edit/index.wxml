@@ -5,6 +5,10 @@
     <image src='{{ userInfo.avatarUrl }}' class='userinfo-avatar' bindtap="uploadAvatar">
     </image>
   </view>
+
+  <view class="avatarHint">
+  <text>点击头像可进行更换</text>
+  </view>
   
   <form bindsubmit="bindSave">
     <view class="weui-cells weui-cells_after-title">
@@ -14,7 +18,7 @@
           <view class="weui-label">昵称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="nickName" class="weui-input" placeholder="昵称" value="{{userInfo.nickName}}" />
+          <input name="nickName" class="weui-input" placeholder="姓名、称呼或昵称" value="{{userInfo.nickName}}" />
         </view>
       </view>
 
@@ -23,7 +27,7 @@
           <view class="weui-label">联系方式</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="contact" class="weui-input" placeholder="电话、微信、QQ等" value="{{userInfo.contact}}" />
+          <input name="contact" class="weui-input" placeholder="微信、QQ或电话" value="{{userInfo.contact}}" />
         </view>
       </view>
 
@@ -33,15 +37,15 @@
         </view>
         <view class="weui-cell__bd">
           <radio-group bindchange="genderChange" name="gender">
-            <radio value="1" checked="{{userInfo.gender == 1}}">男</radio>
-            <radio value="2" checked="{{userInfo.gender == 2}}">女</radio>
+            <radio color="#e7a1a1" value="1" checked="{{userInfo.gender == 1}}">男</radio>
+            <radio color='#e7a1a1' value="2" checked="{{userInfo.gender == 2}}">女</radio>
           </radio-group>
         </view>
       </view>
     </view>
 
     <view class="weui-btn-save">
-      <button type="primary" formType="submit">保存</button>
+      <button class="weui-btn" formType="submit">保存</button>
     </view>
 
   </form>

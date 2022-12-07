@@ -1,4 +1,5 @@
 <view class="container">
+
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="100% 100%">
     </image>
@@ -26,6 +27,5 @@
   <view class="weui-footer weui-footer_fixed-bottom">
     <view class="weui-footer__text">Copyright © PMarket</view>
   </view>
-
 
 </view>
