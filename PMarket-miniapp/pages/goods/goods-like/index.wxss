@@ -1,40 +1,40 @@
 /**index.wxss**/
-swiper{
+swiper {
   height: 300rpx;
 }
 
 
-.weui-grids{
+.weui-grids {
   border: none;
 }
 
-.weui-grid.goods{
+.weui-grid.goods {
   width: 350rpx;
   background: #FFFFFF;
   margin: 10rpx;
   padding: 0rpx;
 }
 
-.weui-grid__icon.goods{
+.weui-grid__icon.goods {
   width: 350rpx;
   height: 350rpx;
 }
 
-.weui-grid__label.goods{
+.weui-grid__label.goods {
   text-align: left;
   padding-left: 6rpx;
 }
 
-.weui-grids .label{
+.weui-grids .label {
   font-size: 26rpx;
 }
 
-.weui-grids .price{
+.weui-grids .price {
   font-size: 26rpx;
   color: #e64340
 }
 
-.nickname{
+.nickname {
   font-size: 24rpx;
   margin-left: 6rpx;
 }
@@ -47,12 +47,12 @@ swiper{
   padding-left: 8rpx;
 }
 
-.types{
+.types {
   padding: 10rpx;
 }
 
-.type{
-  font-size:32rpx;
+.type {
+  font-size: 32rpx;
   font-weight: bold;
   margin-right: 20rpx;
 }
