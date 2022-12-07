@@ -2,11 +2,37 @@
 .userinfo{
   background: #fff;
   text-align: center;
+  padding: 10rpx;
+}
+
+.avatarHint{
+  background: #fff;
+  text-align: center;
   padding: 20rpx;
+  font-size:12px;
+  color:#e7a1a1;
 }
 
 .userinfo-avatar {
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
+}
+
+.weui-btn{
+  background-color: #e7e1e1;
+}
+
+.weui-input{
+  color:#554343;
+}
+
+.weui-cell__bd
+{
+  color:#554343;
+}
+
+.weui-label{
+  font-weight:bold;
+  color:#e75959;
 }

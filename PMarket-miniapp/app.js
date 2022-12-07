@@ -30,7 +30,8 @@ App({
               that.globalData.userId=res.data.id;
               console.log("全局变量，已登录的用户的id",that.globalData.userId);
               callback(0);
-            } else {
+            } 
+            else {
               // 登录错误 
               wx.hideLoading();
               wx.showModal({
@@ -39,7 +40,6 @@ App({
                 showCancel: false
               })
             }
-
           }
         })
       }
@@ -52,7 +52,7 @@ App({
 
   globalData: {
     userId: null,
-    //domain: "http://1.117.242.95:80" 
+    //domain: "http://1.117.242.95:80" 李帅同学服务器
     domain: "http://47.93.251.137:80" //课程服务器
   }
 })
