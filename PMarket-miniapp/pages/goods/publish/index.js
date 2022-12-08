@@ -87,6 +87,11 @@ Page({
     changehidden: function (e) {
         this.setData({ hidden: !this.data.hidden });
     },
+    
+    sethidden:function(e){
+      this.setData({ hidden: true });
+      this.setData({ string: '请选择商品类型' })
+    },
 
     choosecategory0: function (e) {
         this.setData({ category: 0 });
@@ -113,6 +118,7 @@ Page({
             count: 1,
             mediaType: 'image',
             sourceType: ['album', 'camera'],
+            sizeType: 'compressed',
             success(res) {
                 that.setData({ tmpimageurl: res.tempFiles[0].tempFilePath });
                 console.log("生成临时图片",that.data.tmpimageurl);
@@ -157,7 +163,7 @@ Page({
         return;
         }
         else{
-          await that.upAvatar(that);
+          await that.upImg(that);
         }
 
         if (name == '') {
@@ -228,7 +234,7 @@ Page({
         }
 
         var goods = {
-            type: e.detail.value.type,//类型
+            type: that.data.type,//类型
             name: name,//商品名称
             description: description,//商品描述
             category: category,//商品类型
@@ -249,11 +255,14 @@ Page({
                     content: "发布成功",
                     showCancel: false
                 })
+                wx.navigateTo({
+                    url: '/pages/goods/publish/index',
+                })
             }
         })
     },
 
-    async upAvatar(that) {
+    async upImg(that) {
       return new Promise((resolve, reject) => {
     wx.uploadFile({
       url: app.globalData.domain + '/image/upload/goods',

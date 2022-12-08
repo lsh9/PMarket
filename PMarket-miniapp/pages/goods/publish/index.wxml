@@ -2,23 +2,13 @@
 <view class='container'>
   <form bindsubmit='saveGoods'>
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_check">
-        <view class="weui-cell__hd">
-          <view class="weui-label">类型</view>
-        </view>
-        <view class="weui-cell__bd">
-          <radio-group bindchange="typeChange" name="type">
-            <radio value="1" checked="true">出售</radio>
-            <radio value="2">求购</radio>
-          </radio-group>
-        </view>
-      </view>
+
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="name" class="weui-input" maxlength="50" placeholder="请输入商品名称" />
+          <input name="name" class="weui-input" maxlength="20" type='text' placeholder="请输入商品名称"/>
         </view>
       </view>
 
@@ -58,14 +48,14 @@
           <view class="weui-label">商品描述</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="500" bindblur="inputdescription"></textarea>
+          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="400" bindblur="inputdescription"></textarea>
         </view>
       </view>
 
       
 
       <button bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
-      <button bindtap="deleteimg" hidden="{{deletehidden}}">删除图片</button>
+      <button bindtap="deleteimg" hidden="{{deletehidden}}">清除图片</button>
 
       <view class="img-box">
         <image src="{{tmpimageurl}}" class="image" hidden="{{imghidden}}" mode="widthFix"></image>
@@ -77,7 +67,10 @@
     </view>
 
     <view class="weui-btn-area">
-      <button type="primary" class="weui-btn" form-type="submit">发布</button>
+      <button class="weui-btn1" form-type="submit">发布商品</button>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn2" form-type="reset" bindtap="sethidden">重置输入</button>
     </view>
   </form>
 </view>

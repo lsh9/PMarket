@@ -50,7 +50,7 @@ height: 200rpx;
 
 .goods-info .price {
   font-size: 28rpx;
-  color: #ef8203
+  color: #e64340
 }
 
 .goods-info .desc {
@@ -62,8 +62,8 @@ height: 200rpx;
 .remove{
   width:80%;
   margin-top:50rpx;
-  background-color: rgb(106, 0, 95);
-  color: white;
+  background-color: #b8b0b0;
+  color: #554343;
   border-radius: 98rpx;
   display: flex;
   flex-direction: row;
@@ -72,10 +72,10 @@ height: 200rpx;
 }
 
 .collect{
-  width:80%;
   margin-top:40rpx;
-  background-color: rgb(214, 167, 12);
+  background-color: #e7a1a1;
   color: white;
+  width:80%;
   border-radius: 98rpx;
   display: flex;
   flex-direction: row;
