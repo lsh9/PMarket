@@ -1,4 +1,11 @@
 /* pages/publish/index.wxss */
+
+.img-box {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
 .remove{
 	position: absolute;
 	width: 30rpx;
@@ -13,9 +20,11 @@
 
 .des-input{
   overflow-wrap: break-word;
-  height: 300rpx;
+  height: 140rpx;
   width: 500rpx;
   display: inline-block;
   text-align: justify;
   line-height: 30rpx;
+  word-wrap: break-word;
+  white-space: pre-line
 }

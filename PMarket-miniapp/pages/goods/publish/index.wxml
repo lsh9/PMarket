@@ -18,7 +18,7 @@
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="name" class="weui-input" maxlength="50" placeholder="请输入商品名称" />
+          <input name="name" class="weui-input" maxlength="50" placeholder="请输入商品名称" value="{Name}" />
         </view>
       </view>
 
@@ -58,7 +58,7 @@
           <view class="weui-label">商品描述</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea value="{{description}}" placeholder="请输入商品描述" class="des-input" maxlength="500" auto-height="true" bindblur="inputdescription"></textarea>
+          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="500" bindblur="inputdescription"></textarea>
         </view>
       </view>
 
@@ -66,7 +66,10 @@
 
       <button bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
       <button bindtap="deleteimg" hidden="{{deletehidden}}">删除图片</button>
-      <image src="{{tmpimageurl}}" hidden="{{imghidden}}"></image>
+
+      <view class="img-box">
+        <image src="{{tmpimageurl}}" class="image" hidden="{{imghidden}}" mode="widthFix"></image>
+      </view>
 
       
 
@@ -75,6 +78,9 @@
 
     <view class="weui-btn-area">
       <button type="primary" class="weui-btn" form-type="submit">发布</button>
+    </view>
+    <view class="weui-btn-area">
+      <button type="primary" class="weui-btn" form-type="reset">清除数据</button>
     </view>
   </form>
 </view>

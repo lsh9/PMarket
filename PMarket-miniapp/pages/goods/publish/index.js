@@ -28,7 +28,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+      if(app.globalData.userId==null){
+        wx.navigateTo({
+          url: '/pages/my/login/index',
+        })
+      }
     },
 
     /**
@@ -111,7 +115,7 @@ Page({
             sourceType: ['album', 'camera'],
             success(res) {
                 that.setData({ tmpimageurl: res.tempFiles[0].tempFilePath });
-                console.log(that.data.tmpimageurl);
+                console.log("生成临时图片",that.data.tmpimageurl);
                 that.setData({ buttonhidden: true });
                 that.setData({ deletehidden: false });
                 that.setData({ imghidden: false })
@@ -127,15 +131,35 @@ Page({
     },
 
     inputdescription: function (e) {
-        console.log(e.detail.value);
+        console.log("商品描述，用户输入的内容",e.detail.value);
         var that = this;
         that.setData({ description: e.detail.value });
     },
 
 
-    saveGoods: function (e) {
+    saveGoods: async function (e) {
         var that = this;
         var name = e.detail.value.name;//获取商品名称
+
+        if(app.globalData.userId==null){
+          wx.showToast({
+            title: '请先登录再发布商品',
+            icon: 'none'
+          })
+          return;
+        }
+
+        if(that.data.tmpimageurl==null){
+          wx.showToast({
+            title: '请上传商品图片',
+            icon: 'none'
+        })
+        return;
+        }
+        else{
+          await that.upAvatar(that);
+        }
+
         if (name == '') {
             wx.showToast({
                 title: '请填写商品名称',
@@ -203,21 +227,6 @@ Page({
             return;
         }
 
-        wx.uploadFile({
-            filePath: this.data.tmpimageurl,
-            name: 'image',
-            url: app.globalData.domain + '/image/upload/goods',
-            success: function (res) {
-                console.log(res.data)
-                that.data.imageurl = res.data
-                wx.showModal({
-                    title: '提示',
-                    content: "图片上传成功",
-                    showCancel: false
-                })
-            }
-        })
-
         var goods = {
             type: e.detail.value.type,//类型
             name: name,//商品名称
@@ -228,19 +237,61 @@ Page({
             userId: app.globalData.userId,//用户ID
             pictureUrl: that.data.imageurl,//图片的URL
         };
-        console.log(goods);
+        console.log("发布商品，传给后端的商品对象内容",goods);
         wx.request({
             url: app.globalData.domain + '/goods/publish',
             method: 'POST',
             data: goods,
             success: (res) => {
-                console.log(res.data);
+                console.log("发布商品，后端返回的内容",res.data);
                 wx.showModal({
                     title: '提示',
                     content: "发布成功",
                     showCancel: false
                 })
+                wx.navigateTo({
+                    url: '/pages/goods/publish/index',
+                })
             }
         })
-    }
+    },
+
+    async upAvatar(that) {
+      return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: app.globalData.domain + '/image/upload/goods',
+      filePath:that.data.tmpimageurl,
+      name: 'image',
+      success: function(res) {
+        console.log("上传图片中收到的data",res.data);
+        const data = res.data
+        if (res.statusCode==200) {
+          wx.showToast({
+            title: '上传图片成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            imageurl:data
+          })
+          console.log("上传图片完成")
+          resolve('1')
+        }
+        else{
+          wx.showToast({
+            title: '上传失败',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '上传失败',
+          duration: 2000
+        })
+      },
+    })
+      })
+    },
+    
 })
