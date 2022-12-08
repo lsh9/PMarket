@@ -18,7 +18,7 @@
           <view class="weui-label">商品名称</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="name" class="weui-input" maxlength="50" placeholder="请输入商品名称" value="{Name}" />
+          <input name="name" class="weui-input" maxlength="50" bindblur="getname" placeholder="请输入商品名称" value="{Name}" />
         </view>
       </view>
 
@@ -40,7 +40,7 @@
           <view class="weui-label">商品价格</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="price" class="weui-input" type='text' placeholder="请输入商品价格" />
+          <input name="price" class="weui-input" type='text' bindblur="getprice" placeholder="请输入商品价格" />
         </view>
       </view>
 
@@ -49,7 +49,7 @@
           <view class="weui-label">联系方式</view>
         </view>
         <view class="weui-cell__bd">
-          <input name="contact" class="weui-input" type='text' placeholder="请输入联系方式" />
+          <input name="contact" class="weui-input" type='text' bindblur="getcontact" placeholder="请输入联系方式" />
         </view>
       </view>
 

@@ -22,6 +22,9 @@ Page({
         hidden: true,
         string: '请选择商品类型',
         description: '',
+        name: '',
+        contact: '',
+        price:'',
     },
 
     /**
@@ -136,10 +139,28 @@ Page({
         that.setData({ description: e.detail.value });
     },
 
+    getname: function (e) {
+        console.log(e.detail.value);
+        var that = this;
+        that.setData({ Name: e.detail.value });
+    },
+
+    getprice: function (e) {
+        console.log(e.detail.value);
+        var that = this;
+        that.setData({ price: e.detail.value });
+    },
+
+    getcontact: function (e) {
+        console.log(e.detail.value);
+        var that = this;
+        that.setData({ contact: e.detail.value });
+    },
+
 
     saveGoods: async function (e) {
         var that = this;
-        var name = e.detail.value.name;//获取商品名称
+        var name = this.data.name;//获取商品名称
 
         if(app.globalData.userId==null){
           wx.showToast({
@@ -177,7 +198,7 @@ Page({
             return;
         }
 
-      var price = e.detail.value.price;//获取联系方式
+        var price = this.data.price;//获取联系方式
       for (let i = 0; i < price.length; ++i) {//正则判断是否合法
         var textValue = (/^[0-9_]$/.test(price.charAt(i)));
         if (!textValue) {
@@ -199,7 +220,7 @@ Page({
         return;
       }
 
-        var contact = e.detail.value.contact;//获取商品价格
+        var contact = this.data.contact;//获取商品价格
         if (contact == '') {
             wx.showToast({
                 title: '请留下联络方式',
@@ -228,7 +249,7 @@ Page({
         }
 
         var goods = {
-            type: e.detail.value.type,//类型
+            type: 1,//类型
             name: name,//商品名称
             description: description,//商品描述
             category: category,//商品类型
