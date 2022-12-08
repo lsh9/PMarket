@@ -1,6 +1,6 @@
 <!--pages/goods/publish/index.wxml-->
 <view class='container'>
-  <form bindsubmit='saveGoods'>
+  <form bindreset='saveGoods'>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_check">
         <view class="weui-cell__hd">
@@ -77,7 +77,7 @@
     </view>
 
     <view class="weui-btn-area">
-      <button type="primary" class="weui-btn" form-type="submit">发布</button>
+      <button type="primary" class="weui-btn" form-type="reset">发布</button>
     </view>
     <view class="weui-btn-area">
       <button type="primary" class="weui-btn" form-type="reset">清除数据</button>
