@@ -1,5 +1,15 @@
 /* pages/publish/index.wxss */
 
+.weui-label{
+  color:#e08181;
+  font-weight:550;
+}
+
+.label{
+  color:#e08181;
+  font-weight:550;
+}
+
 .weui-btn1{
   background-color: #e7a1a1;
   color: white;

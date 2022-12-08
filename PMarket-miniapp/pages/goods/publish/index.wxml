@@ -54,8 +54,8 @@
 
       
 
-      <button bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
-      <button bindtap="deleteimg" hidden="{{deletehidden}}">清除图片</button>
+      <button class="label" bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
+      <button class="label" bindtap="deleteimg" hidden="{{deletehidden}}">清除图片</button>
 
       <view class="img-box">
         <image src="{{tmpimageurl}}" class="image" hidden="{{imghidden}}" mode="widthFix"></image>
