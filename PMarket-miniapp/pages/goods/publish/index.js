@@ -191,7 +191,7 @@ Page({
         }
         if (price == 'INVALID') {
           wx.showToast({
-            title: '目前只支持正整数价格哦',
+            title: '请填写正整数形式的价格哦~',
             icon: 'none'
           })
           return;
