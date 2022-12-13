@@ -11,7 +11,7 @@ Page({
     goodsList: [],
     isLoad: false,
     page: 1,
-    pageSize: 4,
+    pageSize: 10,
     goodsNum: -1,
     type: 1
   },
