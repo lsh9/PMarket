@@ -7,11 +7,11 @@ Page({
      * 页面的初始数据
      */
     data: {
-        imageurl: null,
-        tmpimageurl: null,
-        buttonhidden: false,
-        imghidden: true,
-        deletehidden: true,
+        imageUrl: null,
+        tmpImageUrl: null,
+        buttonHidden: false,
+        imgHidden: true,
+        deleteHidden: true,
         category: null,
         picUrls: [],
         title: '',
@@ -19,7 +19,7 @@ Page({
         width: '85',
         position: 'center',
         type: 1,
-        hidden: true,
+        choiceHidden: true,
         string: '请选择商品类型',
         description: '',
     },
@@ -84,35 +84,34 @@ Page({
 
     },
 
-    changehidden: function (e) {
-        this.setData({ hidden: !this.data.hidden });
+    changeHidden: function (e) {
+        this.setData({ choiceHidden: !this.data.choiceHidden });
     },
     
-    sethidden:function(e){
-      this.setData({ hidden: true });
+    setHidden:function(e){
+      this.setData({ choiceHidden: true });
       this.setData({ string: '请选择商品类型' })
     },
 
-    choosecategory0: function (e) {
+    chooseCategory0: function (e) {
         this.setData({ category: 0 });
-        this.setData({ hidden: true });
+        this.setData({ choiceHidden: true });
         this.setData({ string: '书籍' })
     },
 
-    choosecategory1: function (e) {
+    chooseCategory1: function (e) {
         this.setData({ category: 1 });
-        this.setData({ hidden: true });
+        this.setData({ choiceHidden: true });
         this.setData({ string: '日用' })
     },
 
-    choosecategory2: function (e) {
+    chooseCategory2: function (e) {
         this.setData({ category: 2 });
-        this.setData({ hidden: true });
+        this.setData({ choiceHidden: true });
         this.setData({ string: '数码' })
     },
 
-
-    uploadimage: function (e) {
+    uploadImage: function (e) {
         var that = this;
         wx.chooseMedia({
             count: 1,
@@ -120,23 +119,23 @@ Page({
             sourceType: ['album', 'camera'],
             sizeType: 'compressed',
             success(res) {
-                that.setData({ tmpimageurl: res.tempFiles[0].tempFilePath });
-                console.log("生成临时图片",that.data.tmpimageurl);
-                that.setData({ buttonhidden: true });
-                that.setData({ deletehidden: false });
-                that.setData({ imghidden: false })
+                that.setData({ tmpImageUrl: res.tempFiles[0].tempFilePath });
+                console.log("生成临时图片",that.data.tmpImageUrl);
+                that.setData({ buttonHidden: true });
+                that.setData({ deleteHidden: false });
+                that.setData({ imgHidden: false })
             }
         })
     },
 
-    deleteimg: function (e) {
-        this.setData({ deletehidden: true });
-        this.setData({ tmpimageurl: null });
-        this.setData({ imghidden: true });
-        this.setData({ buttonhidden: false });
+    deleteImg: function (e) {
+        this.setData({ deleteHidden: true });
+        this.setData({ tmpImageUrl: null });
+        this.setData({ imgHidden: true });
+        this.setData({ buttonHidden: false });
     },
 
-    inputdescription: function (e) {
+    inputDescription: function (e) {
         console.log("商品描述，用户输入的内容",e.detail.value);
         var that = this;
         that.setData({ description: e.detail.value });
@@ -145,7 +144,6 @@ Page({
 
     saveGoods: async function (e) {
         var that = this;
-        var name = e.detail.value.name;//获取商品名称
 
         if(app.globalData.userId==null){
           wx.showToast({
@@ -159,13 +157,14 @@ Page({
           wx.showToast({
             title: '请上传商品图片',
             icon: 'none'
-        })
-        return;
+          })
+          return;
         }
         else{
           await that.upImg(that);
         }
 
+        var name = e.detail.value.name;//获取商品名称
         if (name == '') {
             wx.showToast({
                 title: '请填写商品名称',
@@ -174,7 +173,7 @@ Page({
             return;
         }
 
-        var category = this.data.category;//获取商品名称
+        var category = this.data.category;//获取商品类型
         if (category == null) {
             wx.showToast({
                 title: '请选择商品类型',
@@ -183,27 +182,27 @@ Page({
             return;
         }
 
-      var price = e.detail.value.price;//获取联系方式
-      for (let i = 0; i < price.length; ++i) {//正则判断是否合法
-        var textValue = (/^[0-9_]$/.test(price.charAt(i)));
-        if (!textValue) {
-          price = 'INVALID';
+        var price = e.detail.value.price;//获取联系方式
+        for (let i = 0; i < price.length; ++i) {//正则判断是否合法
+          var textValue = (/^[0-9_]$/.test(price.charAt(i)));
+          if (!textValue) {
+            price = 'INVALID';
+          }
         }
-      }
-      if (price == 'INVALID') {
-        wx.showToast({
-          title: '目前只支持正整数价格哦',
-          icon: 'none'
-        })
-        return;
-      }
-      if (price == '') {
-        wx.showToast({
-          title: '请填写价格',
-          icon: 'none'
-        })
-        return;
-      }
+        if (price == 'INVALID') {
+          wx.showToast({
+            title: '目前只支持正整数价格哦',
+            icon: 'none'
+          })
+          return;
+        }
+        if (price == '') {
+          wx.showToast({
+            title: '请填写价格',
+            icon: 'none'
+          })
+          return;
+        }
 
         var contact = e.detail.value.contact;//获取商品价格
         if (contact == '') {
@@ -213,16 +212,6 @@ Page({
             })
             return;
         }
-
-        /*
-        if (that.data.picUrls.length == 0) {
-          wx.showToast({
-            title: '请上传商品图片',
-            icon: 'none'
-          })
-          return;
-        }
-        */
 
         var description = this.data.description;
         if (description == '') {
@@ -241,7 +230,7 @@ Page({
             price: price,//商品价格
             contact: contact,//联系方式
             userId: app.globalData.userId,//用户ID
-            pictureUrl: that.data.imageurl,//图片的URL
+            pictureUrl: that.data.imageUrl,//图片的URL
         };
         console.log("发布商品，传给后端的商品对象内容",goods);
         wx.request({
@@ -266,7 +255,7 @@ Page({
       return new Promise((resolve, reject) => {
     wx.uploadFile({
       url: app.globalData.domain + '/image/upload/goods',
-      filePath:that.data.tmpimageurl,
+      filePath:that.data.tmpImageUrl,
       name: 'image',
       success: function(res) {
         console.log("上传图片中收到的data",res.data);
@@ -278,7 +267,7 @@ Page({
             duration: 2000
           })
           that.setData({
-            imageurl:data
+            imageUrl:data
           })
           console.log("上传图片完成")
           resolve('1')

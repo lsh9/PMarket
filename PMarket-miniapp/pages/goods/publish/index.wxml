@@ -17,12 +17,10 @@
         <view class="weui-cell__hd">
           <view class="weui-label">分类</view>
         </view>
-        <button plain="true" size="mini" bindtap="changehidden">{{string}}</button>
-        <button hidden="{{hidden}}" bindtap="choosecategory0"> 书籍 </button>
-        <button hidden="{{hidden}}" bindtap="choosecategory1"> 日用 </button>
-        <button hidden="{{hidden}}" bindtap="choosecategory2"> 数码 </button>
-
-
+        <button plain="true" size="mini" bindtap="changeHidden">{{string}}</button>
+        <button hidden="{{choiceHidden}}" bindtap="chooseCategory0"> 书籍 </button>
+        <button hidden="{{choiceHidden}}" bindtap="chooseCategory1"> 日用 </button>
+        <button hidden="{{choiceHidden}}" bindtap="chooseCategory2"> 数码 </button>
       </view>
 
       <view class="weui-cell weui-cell_input">
@@ -48,29 +46,23 @@
           <view class="weui-label">商品描述</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="400" bindblur="inputdescription"></textarea>
+          <textarea value="{{description}}" placeholder="\n请输入商品描述" class="des-input" maxlength="400" bindblur="inputDescription"></textarea>
         </view>
       </view>
 
-      
-
-      <button class="label" bindtap="uploadimage" hidden="{{buttonhidden}}">上传图片</button>
-      <button class="label" bindtap="deleteimg" hidden="{{deletehidden}}">清除图片</button>
+      <button class="label" bindtap="uploadImage" hidden="{{buttonHidden}}">上传图片</button>
+      <button class="label" bindtap="deleteImg" hidden="{{deleteHidden}}">清除图片</button>
 
       <view class="img-box">
-        <image src="{{tmpimageurl}}" class="image" hidden="{{imghidden}}" mode="widthFix"></image>
+        <image src="{{tmpImageUrl}}" class="image" hidden="{{imgHidden}}" mode="widthFix"></image>
       </view>
-
-      
-
-      
     </view>
 
     <view class="weui-btn-area">
       <button class="weui-btn1" form-type="submit">发布商品</button>
     </view>
     <view class="weui-btn-area">
-      <button class="weui-btn2" form-type="reset" bindtap="sethidden">重置输入</button>
+      <button class="weui-btn2" form-type="reset" bindtap="setHidden">重置输入</button>
     </view>
   </form>
 </view>
